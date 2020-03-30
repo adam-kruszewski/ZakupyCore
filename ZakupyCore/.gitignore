@@ -3,4 +3,4 @@ bin
 debug
 obj
 Debug
-ZakupyCore/ZakupyWebApp/obj
+ZakupyCore/ZakupyWebApp/obj/Debug/netcoreapp3.1
