@@ -1,0 +1,44 @@
+﻿@model ZakupyWebApp.Models.ListaUzytkownikowModel
+
+<h2>Lista użytkowników</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-default">
+        <span class="glyphicon glyphicon-plus"></span>
+        Dodaj nowego
+    </a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Nazwa</th>
+        <th>Email</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Uzytkownicy)
+    {
+        <tr>
+            <td>
+                @item.Nazwa
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.ID })" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Edytuj
+                </a>
+                <a href="@Url.Action("Delete", new { id = item.ID })" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Usuń
+                </a>
+                <a href="@Url.Action("Index", "UprawnieniaUzytkownika", new { uzytkownikID = item.ID })"
+                   class="btn btn-default btn-sm">
+                    Uprawnienia
+                </a>
+            </td>
+        </tr>
+    }
+</table>
