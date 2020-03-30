@@ -28,5 +28,17 @@ namespace ZakupyWebApp.Controllers
 
             return View(model);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var model = new UzytkownikEditModel
+            {
+                ID = 1983,
+                Nazwa = "adam",
+                Email = "adam@adam.pl"
+            };
+
+            return View(model);
+        }
     }
 }

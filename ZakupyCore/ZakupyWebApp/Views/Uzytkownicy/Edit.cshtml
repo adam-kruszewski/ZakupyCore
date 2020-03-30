@@ -1,0 +1,20 @@
+﻿@using ZakupyWebApp.HtmlHelpers;
+
+@model ZakupyWebApp.Models.UzytkownikEditModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edycja użytkownika</h2>
+
+@Html.ActionLink("google.pl", "Index", "Home")
+@{ 
+    var a = Html;
+    var s = a.GetType().FullName;
+}
+
+@*@ZakupyWebApp.HtmlHelpers.FormHelper.GenerujFormularz(
+    a, "Edit", "Uzytkownicy", Model, Url.Action("Index"))*@
+@Html.GenerujFormularz("Edit", "Uzytkownicy", Model, Url.Action("Index"))
+
