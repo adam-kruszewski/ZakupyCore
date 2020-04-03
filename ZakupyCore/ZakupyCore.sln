@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZakupyWebApp", "ZakupyWebApp\ZakupyWebApp.csproj", "{8D65D023-10D2-4618-96F6-CA86B1E9BFF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZakupyWebApp", "ZakupyWebApp\ZakupyWebApp.csproj", "{8D65D023-10D2-4618-96F6-CA86B1E9BFF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Model.DataTypes", "Kruchy.Model.DataTypes\Kruchy.Model.DataTypes.csproj", "{2412F773-EC83-4CE3-8616-17BE579CCEAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kruchy.Model.DataTypes", "Kruchy.Model.DataTypes\Kruchy.Model.DataTypes.csproj", "{2412F773-EC83-4CE3-8616-17BE579CCEAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Uzytkownicy", "Kruchy.Uzytkownicy\Kruchy.Uzytkownicy.csproj", "{BD42D84E-0D4E-4E7A-9F0F-2BE302E294A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2412F773-EC83-4CE3-8616-17BE579CCEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2412F773-EC83-4CE3-8616-17BE579CCEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2412F773-EC83-4CE3-8616-17BE579CCEAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD42D84E-0D4E-4E7A-9F0F-2BE302E294A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD42D84E-0D4E-4E7A-9F0F-2BE302E294A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD42D84E-0D4E-4E7A-9F0F-2BE302E294A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD42D84E-0D4E-4E7A-9F0F-2BE302E294A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
