@@ -1,19 +1,27 @@
 ﻿using System.Linq;
+using Kruchy.Uzytkownicy.Services;
 using Microsoft.AspNetCore.Mvc;
 using ZakupyWebApp.Models;
+using ZakupyWebApp.Walidacja;
 
 namespace ZakupyWebApp.Controllers
 {
     public class UzytkownicyController : Controller
     {
+        private readonly IUzytkownicyService uzytkownicyService;
 
+        public UzytkownicyController(
+            IUzytkownicyService uzytkownicyService)
+        {
+            this.uzytkownicyService = uzytkownicyService;
+        }
 
         public ActionResult Index()
         {
             var model = new ListaUzytkownikowModel();
 
             model.Uzytkownicy = new[]
-            { 
+            {
                 new UzytkownikRowModel()
                 {
                     Nazwa = "Adam",
@@ -21,9 +29,34 @@ namespace ZakupyWebApp.Controllers
                     ID = 1983
                 }
             }
-                    .ToList();
+            .ToList();
 
             return View(model);
+        }
+
+        public ActionResult Create()
+        {
+            var model = new UzytkownikEditModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(UzytkownikEditModel form)
+        {
+            if (ModelState.IsValid)
+            {
+                if (uzytkownicyService.Dodaj(
+                        new DodanieUzytkownikaRequest
+                        {
+                            Nazwa = form.Nazwa,
+                            Email = form.Email,
+                            Haslo = form.Haslo,
+                            PowtorzenieHasla = form.PowtorzenieHasla
+                        },
+                        this.DajListeneraWalidacji()) != null)
+                    return RedirectToAction("Index");
+            }
+            return View(form);
         }
 
         [HttpGet]
@@ -40,7 +73,7 @@ namespace ZakupyWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit (UzytkownikEditModel model)
+        public ActionResult Edit(UzytkownikEditModel model)
         {
             if (ModelState.IsValid)
             {

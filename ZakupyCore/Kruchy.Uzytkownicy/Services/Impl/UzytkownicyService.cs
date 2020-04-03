@@ -6,7 +6,7 @@ using Kruchy.Uzytkownicy.Views;
 
 namespace Kruchy.Uzytkownicy.Services.Impl
 {
-    class UzytkownicyService : IUzytkownicyService
+    public class UzytkownicyService : IUzytkownicyService
     {
         public UzytkownikView DajWgID(int id)
         {
@@ -15,6 +15,7 @@ namespace Kruchy.Uzytkownicy.Services.Impl
 
         public int? Dodaj(DodanieUzytkownikaRequest request, IWalidacjaListener listener)
         {
+
             return 1;
         }
 

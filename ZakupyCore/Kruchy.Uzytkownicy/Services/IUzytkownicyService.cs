@@ -4,7 +4,7 @@ using Kruchy.Uzytkownicy.Views;
 
 namespace Kruchy.Uzytkownicy.Services
 {
-    interface IUzytkownicyService
+    public interface IUzytkownicyService
     {
         UzytkownikView DajWgID(int id);
 

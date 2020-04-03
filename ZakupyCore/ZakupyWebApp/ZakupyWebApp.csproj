@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Kruchy.Model.DataTypes\Kruchy.Model.DataTypes.csproj" />
+    <ProjectReference Include="..\Kruchy.Uzytkownicy\Kruchy.Uzytkownicy.csproj" />
   </ItemGroup>
 
 
