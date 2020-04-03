@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using ZakupyWebApp.Models;
 
@@ -29,6 +26,7 @@ namespace ZakupyWebApp.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var model = new UzytkownikEditModel
@@ -38,6 +36,16 @@ namespace ZakupyWebApp.Controllers
                 Email = "adam@adam.pl"
             };
 
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit (UzytkownikEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
             return View(model);
         }
     }
