@@ -72,6 +72,7 @@ namespace Kruchy.Uzytkownicy.Services.Impl
             IWalidacjaListener listener)
         {
             throw new NotImplementedException();
+
         }
 
         private class Uzytkownik : IUzytkownik
