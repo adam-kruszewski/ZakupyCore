@@ -20,13 +20,22 @@ namespace Kruchy.Uzytkownicy.Services.Impl
 
         public UzytkownikView DajWgID(int id)
         {
-            throw new NotImplementedException();
+            var uzytkownik = uzytkownikDao.DajWgID(id);
+
+            return new UzytkownikView()
+            {
+                ID = uzytkownik.ID,
+                Nazwa = uzytkownik.Nazwa,
+            };
         }
 
         public int? Dodaj(DodanieUzytkownikaRequest request, IWalidacjaListener listener)
         {
-
-            return 1;
+            return uzytkownikDao.Wstaw(new Uzytkownik
+            {
+                Nazwa = request.Nazwa,
+                Haslo = request.Haslo
+            });
         }
 
         public UzytkownikView SzukajWgNazwyHasla(string nazwa, string haslo)
@@ -46,12 +55,28 @@ namespace Kruchy.Uzytkownicy.Services.Impl
 
         public bool Zmien(ModyfikacjaUzytkownikaRequest request, IWalidacjaListener listener)
         {
-            throw new NotImplementedException();
+            uzytkownikDao.Aktualizuj(new Uzytkownik
+            {
+                ID = request.ID,
+                Nazwa = request.Nazwa,
+                Haslo = request.Haslo
+            });
+
+            return true;
         }
 
         public bool ZmienHaslo(int uzytkownikID, string noweHaslo, string noweHasloPowtorzenie, IWalidacjaListener listener)
         {
             throw new NotImplementedException();
+        }
+
+        private class Uzytkownik : IUzytkownik
+        {
+            public int ID { get; set; }
+
+            public string Nazwa { get; set; }
+
+            public string Haslo { get; set; }
         }
     }
 }

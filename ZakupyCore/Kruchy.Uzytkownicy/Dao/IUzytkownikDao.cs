@@ -6,7 +6,13 @@ namespace Kruchy.Uzytkownicy.Dao
 {
     public interface IUzytkownikDao
     {
+        IUzytkownik DajWgID(int id);
+
         IEnumerable<IUzytkownik> Szukaj();
+
+        int Wstaw(IUzytkownik uzytkownik);
+
+        void Aktualizuj(IUzytkownik uzytkownik);
     }
 
     public interface IUzytkownik

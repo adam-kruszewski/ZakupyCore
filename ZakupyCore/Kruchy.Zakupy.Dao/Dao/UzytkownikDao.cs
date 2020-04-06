@@ -8,11 +8,28 @@ namespace Kruchy.Zakupy.Dao.Dao
     class UzytkownikDao : IUzytkownikDao
     {
         private readonly ZakupyContext zakupyContext;
+        private static int Sekwencja = 10;
+
+        private readonly int id;
 
         public UzytkownikDao(
             ZakupyContext zakupyContext)
         {
+            id = Sekwencja;
+            Sekwencja++;
             this.zakupyContext = zakupyContext;
+        }
+
+        public IUzytkownik DajWgID(int id)
+        {
+            var uzytkownikEntity = zakupyContext.Uzytkownicy.Single(o => o.ID == id);
+
+            return new Uzytkownik
+            {
+                ID = uzytkownikEntity.ID,
+                Nazwa = uzytkownikEntity.Nazwa,
+                Haslo = uzytkownikEntity.Haslo
+            };
         }
 
         public IEnumerable<IUzytkownik> Szukaj()
@@ -24,6 +41,31 @@ namespace Kruchy.Zakupy.Dao.Dao
                     Nazwa = o.Nazwa,
                     Haslo = o.Haslo
                 });
+        }
+
+        public int Wstaw(IUzytkownik uzytkownik)
+        {
+            var uzytkownikEntity = new UzytkownikEntity
+            {
+                Nazwa = uzytkownik.Nazwa,
+                Haslo = uzytkownik.Haslo
+            };
+
+            zakupyContext.Uzytkownicy.Add(uzytkownikEntity);
+            zakupyContext.SaveChanges();
+
+            return uzytkownikEntity.ID;
+        }
+
+        public void Aktualizuj(IUzytkownik uzytkownik)
+        {
+            var uzytkownikEntity =
+                zakupyContext.Uzytkownicy.Single(o => o.ID == uzytkownik.ID);
+
+            uzytkownikEntity.Nazwa = uzytkownik.Nazwa;
+            uzytkownikEntity.Haslo = uzytkownik.Haslo;
+
+            zakupyContext.SaveChanges();
         }
 
         private class Uzytkownik : IUzytkownik

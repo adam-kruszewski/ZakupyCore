@@ -62,11 +62,12 @@ namespace ZakupyWebApp.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            var uzytkownik = uzytkownicyService.DajWgID(id);
+
             var model = new UzytkownikEditModel
             {
-                ID = 1983,
-                Nazwa = "adam",
-                Email = "adam@adam.pl"
+                ID = uzytkownik.ID,
+                Nazwa = uzytkownik.Nazwa,
             };
 
             return View(model);
@@ -77,7 +78,14 @@ namespace ZakupyWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                if (uzytkownicyService.Zmien(
+                    new ModyfikacjaUzytkownikaRequest
+                    {
+                        ID = model.ID,
+                        Nazwa = model.Nazwa,
+                        Haslo = model.Haslo
+                    }, this.DajListeneraWalidacji()))
+                    return RedirectToAction("Index");
             }
             return View(model);
         }
