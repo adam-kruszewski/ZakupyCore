@@ -11,6 +11,19 @@
         "runtime": {
           "bin/placeholder/Kruchy.Model.DataTypes.dll": {}
         }
+      },
+      "Kruchy.Uzytkownicy/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Kruchy.Model.DataTypes": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Kruchy.Uzytkownicy.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Kruchy.Uzytkownicy.dll": {}
+        }
       }
     }
   },
@@ -19,11 +32,17 @@
       "type": "project",
       "path": "../Kruchy.Model.DataTypes/Kruchy.Model.DataTypes.csproj",
       "msbuildProject": "../Kruchy.Model.DataTypes/Kruchy.Model.DataTypes.csproj"
+    },
+    "Kruchy.Uzytkownicy/1.0.0": {
+      "type": "project",
+      "path": "../Kruchy.Uzytkownicy/Kruchy.Uzytkownicy.csproj",
+      "msbuildProject": "../Kruchy.Uzytkownicy/Kruchy.Uzytkownicy.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Kruchy.Model.DataTypes >= 1.0.0"
+      "Kruchy.Model.DataTypes >= 1.0.0",
+      "Kruchy.Uzytkownicy >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -58,6 +77,9 @@
           "projectReferences": {
             "C:\\adam\\projekty\\git\\ZakupyCore\\ZakupyCore\\Kruchy.Model.DataTypes\\Kruchy.Model.DataTypes.csproj": {
               "projectPath": "C:\\adam\\projekty\\git\\ZakupyCore\\ZakupyCore\\Kruchy.Model.DataTypes\\Kruchy.Model.DataTypes.csproj"
+            },
+            "C:\\adam\\projekty\\git\\ZakupyCore\\ZakupyCore\\Kruchy.Uzytkownicy\\Kruchy.Uzytkownicy.csproj": {
+              "projectPath": "C:\\adam\\projekty\\git\\ZakupyCore\\ZakupyCore\\Kruchy.Uzytkownicy\\Kruchy.Uzytkownicy.csproj"
             }
           }
         }
