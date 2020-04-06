@@ -65,7 +65,11 @@ namespace Kruchy.Uzytkownicy.Services.Impl
             return true;
         }
 
-        public bool ZmienHaslo(int uzytkownikID, string noweHaslo, string noweHasloPowtorzenie, IWalidacjaListener listener)
+        public bool ZmienHaslo(
+            int uzytkownikID,
+            string noweHaslo,
+            string noweHasloPowtorzenie,
+            IWalidacjaListener listener)
         {
             throw new NotImplementedException();
         }
