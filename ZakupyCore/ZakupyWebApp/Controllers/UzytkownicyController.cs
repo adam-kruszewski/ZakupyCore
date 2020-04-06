@@ -20,16 +20,16 @@ namespace ZakupyWebApp.Controllers
         {
             var model = new ListaUzytkownikowModel();
 
-            model.Uzytkownicy = new[]
-            {
-                new UzytkownikRowModel()
-                {
-                    Nazwa = "Adam",
-                    Email = "adam@adam.pl",
-                    ID = 1983
-                }
-            }
-            .ToList();
+            model.Uzytkownicy =
+                uzytkownicyService
+                    .SzukajWszystkich()
+                    .Select(o => new UzytkownikRowModel()
+                    {
+                        ID = o.ID,
+                        Nazwa = o.Nazwa,
+                        Email = o.Email
+                    })
+                        .ToList();
 
             return View(model);
         }

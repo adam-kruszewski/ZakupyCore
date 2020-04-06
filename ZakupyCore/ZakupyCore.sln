@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZakupyWebApp", "ZakupyWebAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kruchy.Model.DataTypes", "Kruchy.Model.DataTypes\Kruchy.Model.DataTypes.csproj", "{2412F773-EC83-4CE3-8616-17BE579CCEAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Uzytkownicy", "Kruchy.Uzytkownicy\Kruchy.Uzytkownicy.csproj", "{BD42D84E-0D4E-4E7A-9F0F-2BE302E294A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kruchy.Uzytkownicy", "Kruchy.Uzytkownicy\Kruchy.Uzytkownicy.csproj", "{BD42D84E-0D4E-4E7A-9F0F-2BE302E294A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Zakupy.Dao", "Kruchy.Zakupy.Dao\Kruchy.Zakupy.Dao.csproj", "{FC942D1E-1073-48DF-8C25-83C71288F720}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{BD42D84E-0D4E-4E7A-9F0F-2BE302E294A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD42D84E-0D4E-4E7A-9F0F-2BE302E294A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD42D84E-0D4E-4E7A-9F0F-2BE302E294A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC942D1E-1073-48DF-8C25-83C71288F720}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC942D1E-1073-48DF-8C25-83C71288F720}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC942D1E-1073-48DF-8C25-83C71288F720}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC942D1E-1073-48DF-8C25-83C71288F720}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

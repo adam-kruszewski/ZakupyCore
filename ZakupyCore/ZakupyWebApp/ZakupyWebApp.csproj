@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Kruchy.Model.DataTypes\Kruchy.Model.DataTypes.csproj" />
     <ProjectReference Include="..\Kruchy.Uzytkownicy\Kruchy.Uzytkownicy.csproj" />
+    <ProjectReference Include="..\Kruchy.Zakupy.Dao\Kruchy.Zakupy.Dao.csproj" />
   </ItemGroup>
 
 

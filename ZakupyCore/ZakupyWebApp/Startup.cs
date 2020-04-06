@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Kruchy.Uzytkownicy.Services;
 using Kruchy.Uzytkownicy.Services.Impl;
+using Kruchy.Zakupy.Dao;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,8 @@ namespace ZakupyWebApp
             services.AddControllersWithViews();
 
             services.AddTransient<IUzytkownicyService, UzytkownicyService>();
+
+            new KruchyZakupyDaoModule().Init(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
