@@ -12,7 +12,7 @@ namespace Kruchy.Zakupy.Dao.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite("Data Source=blogging.db");
+            optionsBuilder.UseSqlite("Data Source=zakupy.db");
             //optionsBuilder.UseSqlServer(
             //    @"Server=(localdb)\mssqllocaldb;Database=Blogging;Integrated Security=True");
             //optionsBuilder.UseSqlServer

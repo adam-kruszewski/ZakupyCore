@@ -3,6 +3,7 @@ using System.Linq;
 using Kruchy.Uzytkownicy.Dao;
 using Kruchy.Zakupy.Dao.Context;
 using Kruchy.Zakupy.Dao.Dao;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Kruchy.Zakupy.Dao
@@ -13,7 +14,8 @@ namespace Kruchy.Zakupy.Dao
         {
             using (var context = new ZakupyContext())
             {
-                var creationResult = context.Database.EnsureCreated();
+                //var creationResult = 
+                context.Database.Migrate();
 
                 if (!context.Uzytkownicy.Any())
                 {
