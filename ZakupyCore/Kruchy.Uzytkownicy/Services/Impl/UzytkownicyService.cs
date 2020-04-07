@@ -34,7 +34,8 @@ namespace Kruchy.Uzytkownicy.Services.Impl
             return uzytkownikDao.Wstaw(new Uzytkownik
             {
                 Nazwa = request.Nazwa,
-                Haslo = request.Haslo
+                Haslo = request.Haslo,
+                Email = request.Email
             });
         }
 
@@ -49,7 +50,7 @@ namespace Kruchy.Uzytkownicy.Services.Impl
             {
                 ID = o.ID,
                 Nazwa = o.Nazwa,
-                Email = "a@b.pl"
+                Email = o.Email
             }).ToList();
         }
 
@@ -59,7 +60,8 @@ namespace Kruchy.Uzytkownicy.Services.Impl
             {
                 ID = request.ID,
                 Nazwa = request.Nazwa,
-                Haslo = request.Haslo
+                Haslo = request.Haslo,
+                Email = request.Email
             });
 
             return true;
@@ -82,6 +84,8 @@ namespace Kruchy.Uzytkownicy.Services.Impl
             public string Nazwa { get; set; }
 
             public string Haslo { get; set; }
+
+            public string Email { get; set; }
         }
     }
 }

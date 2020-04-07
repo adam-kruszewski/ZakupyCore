@@ -28,7 +28,8 @@ namespace Kruchy.Zakupy.Dao.Dao
             {
                 ID = uzytkownikEntity.ID,
                 Nazwa = uzytkownikEntity.Nazwa,
-                Haslo = uzytkownikEntity.Haslo
+                Haslo = uzytkownikEntity.Haslo,
+                Email = uzytkownikEntity.Email
             };
         }
 
@@ -39,7 +40,8 @@ namespace Kruchy.Zakupy.Dao.Dao
                 {
                     ID = o.ID,
                     Nazwa = o.Nazwa,
-                    Haslo = o.Haslo
+                    Haslo = o.Haslo,
+                    Email = o.Email
                 });
         }
 
@@ -48,7 +50,8 @@ namespace Kruchy.Zakupy.Dao.Dao
             var uzytkownikEntity = new UzytkownikEntity
             {
                 Nazwa = uzytkownik.Nazwa,
-                Haslo = uzytkownik.Haslo
+                Haslo = uzytkownik.Haslo,
+                Email = uzytkownik.Email
             };
 
             zakupyContext.Uzytkownicy.Add(uzytkownikEntity);
@@ -64,6 +67,7 @@ namespace Kruchy.Zakupy.Dao.Dao
 
             uzytkownikEntity.Nazwa = uzytkownik.Nazwa;
             uzytkownikEntity.Haslo = uzytkownik.Haslo;
+            uzytkownikEntity.Email = uzytkownik.Email;
 
             zakupyContext.SaveChanges();
         }
@@ -75,6 +79,8 @@ namespace Kruchy.Zakupy.Dao.Dao
             public string Nazwa { get; set; }
 
             public string Haslo { get; set; }
+
+            public string Email { get; set; }
         }
     }
 }

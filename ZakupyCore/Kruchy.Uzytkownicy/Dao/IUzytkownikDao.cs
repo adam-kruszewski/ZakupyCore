@@ -22,5 +22,7 @@ namespace Kruchy.Uzytkownicy.Dao
         string Nazwa { get; }
 
         string Haslo { get; }
+
+        string Email { get; }
     }
 }
