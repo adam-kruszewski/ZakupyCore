@@ -5,3 +5,5 @@ Debug
 ZakupyCore/ZakupyWebApp/obj/Debug/netcoreapp3.1
 ZakupyWebApp/blogging.db-wal
 .vs
+*.db
+*.db-*
