@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Kruchy.Uzytkownicy;
 using Kruchy.Uzytkownicy.Services;
 using Kruchy.Uzytkownicy.Services.Impl;
 using Kruchy.Zakupy.Dao;
@@ -31,6 +32,7 @@ namespace ZakupyWebApp
             services.AddTransient<IUzytkownicyService, UzytkownicyService>();
 
             new KruchyZakupyDaoModule().Init(services);
+            new KruchyUzytkownicyModule().Init(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

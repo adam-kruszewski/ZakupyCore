@@ -5,17 +5,21 @@ using System.Text;
 using Kruchy.Model.DataTypes.Walidacja;
 using Kruchy.Uzytkownicy.Dao;
 using Kruchy.Uzytkownicy.Views;
+using Kruchy.Uzytkownicy.Walidacja;
 
 namespace Kruchy.Uzytkownicy.Services.Impl
 {
     public class UzytkownicyService : IUzytkownicyService
     {
         private readonly IUzytkownikDao uzytkownikDao;
+        private readonly IWalidacjaUzytkownika walidacjaUzytkownika;
 
         public UzytkownicyService(
-            IUzytkownikDao uzytkownikDao)
+            IUzytkownikDao uzytkownikDao,
+            IWalidacjaUzytkownika walidacjaUzytkownika)
         {
             this.uzytkownikDao = uzytkownikDao;
+            this.walidacjaUzytkownika = walidacjaUzytkownika;
         }
 
         public UzytkownikView DajWgID(int id)
@@ -31,12 +35,17 @@ namespace Kruchy.Uzytkownicy.Services.Impl
 
         public int? Dodaj(DodanieUzytkownikaRequest request, IWalidacjaListener listener)
         {
-            return uzytkownikDao.Wstaw(new Uzytkownik
+            var entity = new Uzytkownik
             {
                 Nazwa = request.Nazwa,
                 Haslo = request.Haslo,
                 Email = request.Email
-            });
+            };
+
+            if (!walidacjaUzytkownika.Waliduj(entity, listener))
+                return null;
+
+            return uzytkownikDao.Wstaw(entity);
         }
 
         public UzytkownikView SzukajWgNazwyHasla(string nazwa, string haslo)

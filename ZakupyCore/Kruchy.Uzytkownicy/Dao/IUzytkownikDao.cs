@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Kruchy.Uzytkownicy.Dao
 {
     public interface IUzytkownikDao
     {
         IUzytkownik DajWgID(int id);
+
+        IUzytkownik SzukajWgNazwy(string nazwa);
 
         IEnumerable<IUzytkownik> Szukaj();
 

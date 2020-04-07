@@ -24,25 +24,25 @@ namespace Kruchy.Zakupy.Dao.Dao
         {
             var uzytkownikEntity = zakupyContext.Uzytkownicy.Single(o => o.ID == id);
 
-            return new Uzytkownik
-            {
-                ID = uzytkownikEntity.ID,
-                Nazwa = uzytkownikEntity.Nazwa,
-                Haslo = uzytkownikEntity.Haslo,
-                Email = uzytkownikEntity.Email
-            };
+            return new Uzytkownik(uzytkownikEntity);
+        }
+
+        public IUzytkownik SzukajWgNazwy(string nazwa)
+        {
+            var entity =
+                zakupyContext
+                    .Uzytkownicy
+                        .SingleOrDefault(o => o.Nazwa.ToLower() == nazwa.ToLower());
+
+            if (entity != null)
+                return new Uzytkownik(entity);
+            else
+                return null;
         }
 
         public IEnumerable<IUzytkownik> Szukaj()
         {
-            return
-                zakupyContext.Uzytkownicy.Select(o => new Uzytkownik
-                {
-                    ID = o.ID,
-                    Nazwa = o.Nazwa,
-                    Haslo = o.Haslo,
-                    Email = o.Email
-                });
+            return zakupyContext.Uzytkownicy.Select(o => new Uzytkownik(o));
         }
 
         public int Wstaw(IUzytkownik uzytkownik)
@@ -81,6 +81,14 @@ namespace Kruchy.Zakupy.Dao.Dao
             public string Haslo { get; set; }
 
             public string Email { get; set; }
+
+            public Uzytkownik(UzytkownikEntity entity)
+            {
+                ID = entity.ID;
+                Nazwa = entity.Nazwa;
+                Haslo = entity.Haslo;
+                Email = entity.Email;
+            }
         }
     }
 }
