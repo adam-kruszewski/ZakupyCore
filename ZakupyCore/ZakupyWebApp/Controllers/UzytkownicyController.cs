@@ -68,6 +68,7 @@ namespace ZakupyWebApp.Controllers
             {
                 ID = uzytkownik.ID,
                 Nazwa = uzytkownik.Nazwa,
+                Email = uzytkownik.Email
             };
 
             return View(model);

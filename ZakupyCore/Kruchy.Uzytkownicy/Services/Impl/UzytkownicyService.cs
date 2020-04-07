@@ -63,15 +63,22 @@ namespace Kruchy.Uzytkownicy.Services.Impl
             }).ToList();
         }
 
-        public bool Zmien(ModyfikacjaUzytkownikaRequest request, IWalidacjaListener listener)
+        public bool Zmien(
+            ModyfikacjaUzytkownikaRequest request,
+            IWalidacjaListener listener)
         {
-            uzytkownikDao.Aktualizuj(new Uzytkownik
+            var entity = new Uzytkownik
             {
                 ID = request.ID,
                 Nazwa = request.Nazwa,
                 Haslo = request.Haslo,
                 Email = request.Email
-            });
+            };
+
+            if (!walidacjaUzytkownika.Waliduj(entity, listener))
+                return false;
+
+            uzytkownikDao.Aktualizuj(entity);
 
             return true;
         }
