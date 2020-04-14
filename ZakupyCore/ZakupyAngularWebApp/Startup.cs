@@ -30,8 +30,6 @@ namespace ZakupyAngularWebApp
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddTransient<IUzytkownicyService, UzytkownicyService>();
-
             new KruchyZakupyDaoModule().Init(services);
             new KruchyUzytkownicyModule().Init(services);
         }
