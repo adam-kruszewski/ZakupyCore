@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ZamowieniaService } from '../zamowienia.service';
 
 @Component({
   selector: 'app-zamowienia',
@@ -10,15 +11,17 @@ export class ZamowieniaComponent implements OnInit {
   zamowienia;
   numerZamowienia = 20;
 
-  constructor() {
+  constructor(private zamowieniaService: ZamowieniaService) {
     this.numerZamowienia = 33;
   }
 
   onDodaj() {
     window.alert('Dodawanie nowego zamówienia');
 
-    this.zamowienia.push({ nazwa: 'Nowe zamówienie ' + this.numerZamowienia, data_konca: new Date() });
-    this.numerZamowienia++;
+    this.zamowienia = this.zamowieniaService.getZamowienia();
+
+    //this.zamowienia.push({ nazwa: 'Nowe zamówienie ' + this.numerZamowienia, data_konca: new Date() });
+    //this.numerZamowienia++;
   }
 
   ngOnInit() {
@@ -27,5 +30,7 @@ export class ZamowieniaComponent implements OnInit {
       { nazwa: 'zamowienie1', data_konca: new Date() },
       { nazwa: 'zamowienie2', data_konca: new Date() }
       ];
+
+    this.zamowienia = this.zamowieniaService.getZamowienia();
   }
 }

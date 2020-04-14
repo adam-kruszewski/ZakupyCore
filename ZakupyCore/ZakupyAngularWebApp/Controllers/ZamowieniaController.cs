@@ -7,6 +7,7 @@ namespace ZakupyAngularWebApp.Controllers
     [Route("api/[controller]")]
     public class ZamowieniaController : Controller
     {
+        [HttpGet]
         public IList<DefinicjaZamowienia> Szukaj()
         {
             var definicje = new List<DefinicjaZamowienia>();
@@ -16,6 +17,7 @@ namespace ZakupyAngularWebApp.Controllers
             for (int i = 0; i < ile; i++)
                 definicje.Add(new DefinicjaZamowienia
                 {
+                    ID = 10 + i,
                     Nazwa = "Zamówienie " + i,
                     DataKonca = DateTime.Today.AddDays(i)
                 });
@@ -26,6 +28,8 @@ namespace ZakupyAngularWebApp.Controllers
 
     public class DefinicjaZamowienia
     {
+        public int ID { get; set; }
+
         public string Nazwa { get; set; }
 
         public DateTime DataKonca { get; set; }

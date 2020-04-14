@@ -11,14 +11,14 @@
       <td>Data końca zamówienia</td>
     </tr>
   </thead>
-  <tbody *ngFor="let zamowienie of zamowienia;">
+  <tbody *ngFor="let zamowienie of zamowienia | async;">
     <tr>
       <td>
         {{zamowienie.nazwa}}
       </td>
       <td><button>Szczegóły</button></td>
       <td><button>Zamów</button></td>
-      <td>{{zamowienie.data_konca}}</td>
+      <td>Data {{zamowienie.DataKonca}} końca</td>
     </tr>
     <!--<p>
       <label> Zamówienie: </label>
