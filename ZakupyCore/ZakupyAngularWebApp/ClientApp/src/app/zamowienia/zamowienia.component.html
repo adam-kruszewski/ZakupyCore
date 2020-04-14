@@ -1,0 +1,28 @@
+<h1>Tu będą zamówienia</h1>
+
+<button (click)="onDodaj()">Dodaj nowe</button>
+
+<table>
+  <thead>
+    <tr>
+      <td>Nazwa</td>
+      <td></td>
+      <td></td>
+      <td>Data końca zamówienia</td>
+    </tr>
+  </thead>
+  <tbody *ngFor="let zamowienie of zamowienia;">
+    <tr>
+      <td>
+        {{zamowienie.nazwa}}
+      </td>
+      <td><button>Szczegóły</button></td>
+      <td><button>Zamów</button></td>
+      <td>{{zamowienie.data_konca}}</td>
+    </tr>
+    <!--<p>
+      <label> Zamówienie: </label>
+      {{zamowienie.nazwa}}
+    </p>-->
+  </tbody>
+</table>
