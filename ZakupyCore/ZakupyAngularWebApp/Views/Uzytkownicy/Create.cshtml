@@ -1,0 +1,11 @@
+@using ZakupyAngularWebApp.HtmlHelpers;
+
+@model ZakupyAngularWebApp.Models.UzytkownikEditModel
+
+@{
+    ViewBag.Title = "Dodawanie u¿ytkownika";
+}
+
+<h2>Dodowanie u¿ytkownika</h2>
+
+@Html.GenerujFormularz("Create", "Uzytkownicy", Model, Url.Action("Index"))
