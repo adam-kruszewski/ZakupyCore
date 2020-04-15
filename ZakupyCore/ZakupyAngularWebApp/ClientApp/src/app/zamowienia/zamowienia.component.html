@@ -17,7 +17,7 @@
         {{zamowienie.nazwa}}
       </td>
       <td><a [routerLink]="['/zamowienie', zamowienie.id]" >Szczegóły</a></td>
-      <td><button>Zamów</button></td>
+      <td><button [routerLink]="['/zamowienie-produkty', zamowienie.id]">Zamów</button></td>
       <td>Data {{zamowienie.DataKonca}} końca</td>
     </tr>
     <!--<p>

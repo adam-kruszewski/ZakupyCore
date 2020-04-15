@@ -11,6 +11,8 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ZamowieniaComponent } from './zamowienia/zamowienia.component';
 import { ZamowienieComponent } from './zamowienie/zamowienie.component';
+import { ZamowienieProduktyComponent, GrupaProduktow } from './zamowienie-produkty/zamowienie-produkty.component';
+import { GrupaProduktowComponent } from './grupa-produktow/grupa-produktow.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { ZamowienieComponent } from './zamowienie/zamowienie.component';
     FetchDataComponent,
     ZamowieniaComponent,
     ZamowienieComponent,
+    ZamowienieProduktyComponent,
+    GrupaProduktowComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,7 +35,8 @@ import { ZamowienieComponent } from './zamowienie/zamowienie.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'zamowienia', component: ZamowieniaComponent },
-      { path: 'zamowienie/:zamowienieID', component: ZamowienieComponent }
+      { path: 'zamowienie/:zamowienieID', component: ZamowienieComponent },
+      { path: 'zamowienie-produkty/:zamowienieID', component: ZamowienieProduktyComponent }
     ])
   ],
   providers: [],
