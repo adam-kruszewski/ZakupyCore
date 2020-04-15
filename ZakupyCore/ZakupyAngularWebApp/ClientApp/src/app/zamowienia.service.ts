@@ -8,15 +8,21 @@ import { HttpClient } from '@angular/common/http';
 export class ZamowieniaService {
   getZamowienia() {
     let zamowienia =
-      this.http.get('/api/zamowienia');
+      this.http.get<DefinicjaZamowienia>('/api/zamowienia');
 
     return zamowienia;
   }
 
-  getZamowienieByID(id: any): Promise<any> {
+  getZamowienieByID(id: number): Promise<any> {
     return this.http.get('/api/zamowienie?id=' + id).toPromise();
   }
 
   constructor(private http: HttpClient) {
   }
+}
+
+export class DefinicjaZamowienia {
+  id: number;
+  nazwa: string;
+  dataKonca: Date;
 }

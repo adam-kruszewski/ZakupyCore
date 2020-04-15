@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ZamowieniaService } from '../zamowienia.service';
+import { ZamowieniaService, DefinicjaZamowienia } from '../zamowienia.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-zamowienia',
@@ -8,7 +9,7 @@ import { ZamowieniaService } from '../zamowienia.service';
 })
 
 export class ZamowieniaComponent implements OnInit {
-  zamowienia;
+  zamowienia: Observable<DefinicjaZamowienia>;
   numerZamowienia = 20;
 
   constructor(private zamowieniaService: ZamowieniaService) {
@@ -19,18 +20,9 @@ export class ZamowieniaComponent implements OnInit {
     window.alert('Dodawanie nowego zamówienia');
 
     this.zamowienia = this.zamowieniaService.getZamowienia();
-
-    //this.zamowienia.push({ nazwa: 'Nowe zamówienie ' + this.numerZamowienia, data_konca: new Date() });
-    //this.numerZamowienia++;
   }
 
   ngOnInit() {
-    this.zamowienia =
-      [
-      { nazwa: 'zamowienie1', data_konca: new Date() },
-      { nazwa: 'zamowienie2', data_konca: new Date() }
-      ];
-
     this.zamowienia = this.zamowieniaService.getZamowienia();
   }
 }

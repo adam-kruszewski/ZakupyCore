@@ -18,13 +18,10 @@ export class ZamowienieComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      let zamowienieID : any = params.get('zamowienieID');
+      let zamowienieID: number = params.get('zamowienieID') as unknown as number;
       this.zamowieniaService.getZamowienieByID(zamowienieID).then(data => {
         this.zamowienie = { nazwa: data.nazwa, id: data.id, data_konca: data.dataKonca };
       });
     });
-
-
-    //this.zamowienia = this.zamowieniaService.getZamowienia();
   }
 }
