@@ -13,6 +13,10 @@ export class ZamowieniaService {
     return zamowienia;
   }
 
+  getZamowienieByID(id: any): Promise<any> {
+    return this.http.get('/api/zamowienie?id=' + id).toPromise();
+  }
+
   constructor(private http: HttpClient) {
   }
 }

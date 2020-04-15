@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ZamowieniaComponent } from './zamowienia/zamowienia.component';
+import { ZamowienieComponent } from './zamowienie/zamowienie.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ZamowieniaComponent } from './zamowienia/zamowienia.component';
     CounterComponent,
     FetchDataComponent,
     ZamowieniaComponent,
+    ZamowienieComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -28,7 +30,8 @@ import { ZamowieniaComponent } from './zamowienia/zamowienia.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'zamowienia', component: ZamowieniaComponent }
+      { path: 'zamowienia', component: ZamowieniaComponent },
+      { path: 'zamowienie/:zamowienieID', component: ZamowienieComponent }
     ])
   ],
   providers: [],
