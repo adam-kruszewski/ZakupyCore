@@ -1,9 +1,18 @@
 <h3> Szczegóły zamówienia</h3>
-<p>
-  <label>Nazwa:</label>
-  {{zamowienie.nazwa}}
-</p>
-<p>
-  <label>Data końca zamawiania:</label>
-  {{zamowienie.data_konca | date}}
-</p>
+<div *ngIf="zamowienie">
+  <p>
+    <label>Nazwa:</label>
+    {{zamowienie.nazwa}}
+  </p>
+
+  <p>
+    <label>Data końca zamawiania:</label>
+    {{zamowienie.data_konca | date}}
+  </p>
+
+  <app-lista-produktow></app-lista-produktow>
+
+  <div>
+    <button [routerLink]="['/zamowienie-produkty', zamowienie.id]">Zamów</button>
+  </div>
+</div>
