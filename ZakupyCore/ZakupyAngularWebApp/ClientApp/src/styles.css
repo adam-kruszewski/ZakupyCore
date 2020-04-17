@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
+@import 'ag-grid-community/dist/styles/ag-grid.css';
+@import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
 a {
   color: #0366d6;
 }
@@ -13,4 +16,16 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+td.nazwa-produktu {
+    width: 90%;
+}
+
+app-grupa-produktow {
+  width: 100%;
+}
+
+.wiersz-grupy {
+  font-weight: bold;
 }

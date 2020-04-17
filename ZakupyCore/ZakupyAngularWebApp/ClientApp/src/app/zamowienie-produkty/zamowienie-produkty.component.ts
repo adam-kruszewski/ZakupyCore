@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ZamowieniaService } from '../zamowienia.service';
+import { AgGridAngular } from 'ag-grid-angular';
+import { NumberFormatterComponent } from '../number-formatter/number-formatter.component';
 
 @Component({
   selector: 'app-zamowienie-produkty',
@@ -11,10 +13,31 @@ import { ZamowieniaService } from '../zamowienia.service';
 export class ZamowienieProduktyComponent implements OnInit {
   grupyProduktow: GrupaProduktow[];
 
+  @ViewChild('agGrid', null) agGrid: AgGridAngular;
+
+  frameworkComponents = {
+    numberFormatterComponent: NumberFormatterComponent,
+  };
+
+  columnDefs = [
+    { headerName: 'Nazwa produktu/grupy', field: 'nazwa' },
+    { headerName: 'Cena', field: 'cena', cellRenderer: 'numberFormatterComponent' },
+    { headerName: 'Ilość / limit', field: 'limit' }
+  ];
+
+  rowData = [];
+
   constructor(
     private route: ActivatedRoute,
     private zamowieniaService: ZamowieniaService) {
     this.grupyProduktow = [];
+  }
+
+  getRowStyleScheduled(data) {
+    if (data.data.grupa)
+      return "wiersz-grupy";
+    else
+      return "wiersz-produktu";
   }
 
   ngOnInit() {
@@ -48,6 +71,24 @@ export class ZamowienieProduktyComponent implements OnInit {
     //    this.zamowienie = { nazwa: data.nazwa, id: data.id, data_konca: data.dataKonca };
     //  });
     //});
+
+    let wiersze = [];
+    this.grupyProduktow.forEach(function (grupa: GrupaProduktow) {
+      wiersze.push({
+        nazwa: grupa.nazwa, limit: grupa.limit, grupa: true
+      });
+
+      grupa.produkty.forEach(function (produkt: Produkt) {
+        wiersze.push({
+          nazwa: produkt.nazwa, cena: produkt.cena, grupa: false
+        });
+      });
+    });
+
+    for (let i = 0; i < wiersze.length; i++)
+      this.rowData.push(wiersze[i]);
+
+    this.agGrid.rowStyle = "wiersz1";
   }
 }
 

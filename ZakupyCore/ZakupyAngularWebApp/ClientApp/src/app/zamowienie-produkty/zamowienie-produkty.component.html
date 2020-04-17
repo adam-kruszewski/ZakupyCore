@@ -1,14 +1,10 @@
 <h3> Zamów produkty</h3>
 
-<table>
-  <thead>
-    <tr><td>Nazwa</td><td>Ilość / limit</td></tr>
-  </thead>
-  <tbody *ngFor="let grupa of grupyProduktow">
-    <tr>
-      <td> {{grupa.nazwa}}</td>
-      <td> <span *ngIf="grupa.limit > 0"> {{grupa.limit}}</span> </td>
-    </tr>
-    <app-grupa-produktow [grupaProduktow]="grupa"></app-grupa-produktow>
-  </tbody>
-</table>
+<ag-grid-angular #agGrid style="width: 500px; "
+                 domLayout='autoHeight'
+                 class="ag-theme-balham"
+                 [rowData]="rowData"
+                 [columnDefs]="columnDefs"
+                 [frameworkComponents]="frameworkComponents"
+                 [getRowClass]="getRowStyleScheduled">
+</ag-grid-angular>
