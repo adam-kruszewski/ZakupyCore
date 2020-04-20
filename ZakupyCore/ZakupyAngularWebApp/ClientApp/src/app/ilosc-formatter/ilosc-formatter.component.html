@@ -1,0 +1,2 @@
+<input *ngIf="params.data.edytowac" type="text" name="ilosc[{{params.data.produkt_id}}]" id="produkt_{{params.data.produkt_id}}"/>
+<span *ngIf="params.value && !params.data.grupa && !params.data.edytowac">{{params.value}}zł</span>

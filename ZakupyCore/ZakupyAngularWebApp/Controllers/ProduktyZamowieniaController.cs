@@ -23,8 +23,8 @@ namespace ZakupyAngularWebApp.Controllers
                 Produkty =
                 new[]
                 {
-                    new DefinicjaProduktu {Nazwa = "Produkt 1 ", Cena = 2.34m},
-                    new DefinicjaProduktu { Nazwa = "Produkt 2", Cena = 3.45m}
+                    new DefinicjaProduktu {ID = 22, Nazwa = "Produkt 1", Cena = 2.34m},
+                    new DefinicjaProduktu {ID = 23, Nazwa = "Produkt 2", Cena = 3.45m}
                 }.ToList()
             };
 
@@ -35,8 +35,8 @@ namespace ZakupyAngularWebApp.Controllers
                 Produkty =
                 new[]
                 {
-                    new DefinicjaProduktu {Nazwa = "Produkt 3 ", Cena = 6.11m},
-                    new DefinicjaProduktu { Nazwa = "Produkt 4", Cena = 7.04m}
+                    new DefinicjaProduktu { ID = 34, Nazwa = "Produkt 3", Cena = 6.11m},
+                    new DefinicjaProduktu { ID = 35, Nazwa = "Produkt 4", Cena = 7.04m}
                 }.ToList()
             };
         }

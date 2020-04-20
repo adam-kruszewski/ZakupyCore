@@ -36,6 +36,7 @@ export class ZamowieniaService {
       let produkt = new Produkt();
       produkt.nazwa = definicja.nazwa;
       produkt.cena = definicja.cena;
+      produkt.id = definicja.id;
 
       return produkt;
     });
@@ -46,13 +47,14 @@ export class ZamowieniaService {
   }
 }
 
-class DefinicjaZamowienia {
+export class DefinicjaZamowienia {
   id: number;
   nazwa: string;
   dataKonca: Date;
 }
 
 class DefinicjaProduktu {
+  id: number;
   nazwa: string;
   cena: number;
 }
@@ -76,6 +78,7 @@ export class GrupaProduktow {
 }
 
 export class Produkt {
+  id: number;
   nazwa: string;
   cena: number;
 }

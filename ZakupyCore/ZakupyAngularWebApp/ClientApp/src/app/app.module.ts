@@ -13,8 +13,9 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ZamowieniaComponent } from './zamowienia/zamowienia.component';
 import { ZamowienieComponent } from './zamowienie/zamowienie.component';
-import { ZamowienieProduktyComponent, GrupaProduktow } from './zamowienie-produkty/zamowienie-produkty.component';
+import { ZamowienieProduktyComponent } from './zamowienie-produkty/zamowienie-produkty.component';
 import { ListaProduktowComponent } from './lista-produktow/lista-produktow.component';
+import { IloscFormatterComponent } from './ilosc-formatter/ilosc-formatter.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +28,14 @@ import { ListaProduktowComponent } from './lista-produktow/lista-produktow.compo
     ZamowienieComponent,
     ZamowienieProduktyComponent,
     ListaProduktowComponent,
-    NumberFormatterComponent
+    NumberFormatterComponent,
+    IloscFormatterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    AgGridModule.withComponents([NumberFormatterComponent]),
+    AgGridModule.withComponents([NumberFormatterComponent, IloscFormatterComponent]),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
