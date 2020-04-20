@@ -48,23 +48,6 @@ export class ZamowienieComponent implements OnInit {
         map((data: any[]) =>
           data.map((item: any) => this.dajGrupe(item))))
       .pipe();
-
-      //.subscribe(result => {
-      //  let grupyLocal = result.map(function (g: DefinicjaGrupy) {
-      //    let grupa = new GrupaProduktow();
-      //    grupa.nazwa = g.nazwa;
-      //    grupa.limit = g.limit;
-
-      //    g.produkty.forEach(function (dp: DefinicjaProduktu) {
-      //      var p = new Produkt();
-      //      p.nazwa = dp.nazwa;
-      //      p.cena = dp.cena;
-      //      grupa.produkty.push(p);
-      //    });
-
-      //    return grupa;
-      //  });
     });
-    //});
   }
 }

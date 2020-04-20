@@ -14,6 +14,7 @@ import { map } from "rxjs/operators";
 
 export class ListaProduktowComponent implements OnInit {
   @Input() grupyProduktow: Observable<GrupaProduktow[]>;
+  @Input() wyswietlacIlosc: boolean;
 
   @ViewChild('agGrid', null) agGrid: AgGridAngular;
 
@@ -24,9 +25,7 @@ export class ListaProduktowComponent implements OnInit {
   columnDefs = [
     { headerName: 'Nazwa produktu/grupy', field: 'nazwa' },
     { headerName: 'Limit', field: 'limit' },
-    { headerName: 'Cena', field: 'cena', cellRenderer: 'numberFormatterComponent' },
-    { headerName: 'Ilość', field: 'ilosc' }
-  ];
+    { headerName: 'Cena', field: 'cena', cellRenderer: 'numberFormatterComponent' }];
 
   wiersze: Observable<Wiersz[]>;
 
@@ -41,6 +40,9 @@ export class ListaProduktowComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.wyswietlacIlosc)
+      this.columnDefs.push({ headerName: 'Ilość', field: 'ilosc' });
+
     this.wiersze =
       this.grupyProduktow.pipe<Wiersz[]>(
         map((data: GrupaProduktow[]) => this.przygotujWiersze(data)))

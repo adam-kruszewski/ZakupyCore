@@ -14,7 +14,9 @@
     <li>Grupa {{x.nazwa}}</li>
   </ol>-->
 
-  <app-lista-produktow [grupyProduktow]="grupy"></app-lista-produktow>
+  <app-lista-produktow [grupyProduktow]="grupy"
+                       [wyswietlacIlosc]="false">
+  </app-lista-produktow>
 
   <div>
     <button [routerLink]="['/zamowienie-produkty', zamowienie.id]">Zamów</button>
