@@ -1,0 +1,21 @@
+<h3>Dodawania zamówienia</h3>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+
+  <div>
+    <label for="nazwa">
+      Nazwa:
+    </label>
+    <input id="name" type="text" formControlName="nazwa">
+  </div>
+
+  <div>
+    <label for="data_konca">
+      Data końca zamawiania:
+    </label>
+    <input id="address" type="text" formControlName="data_konca">
+  </div>
+
+  <button class="button" type="submit">Dodaj</button>
+
+</form>
