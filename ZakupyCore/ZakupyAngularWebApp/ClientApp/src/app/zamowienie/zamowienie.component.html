@@ -10,7 +10,11 @@
     {{zamowienie.data_konca | date}}
   </p>
 
-  <app-lista-produktow></app-lista-produktow>
+  <!--<ol *ngFor="let x of grupy | async">
+    <li>Grupa {{x.nazwa}}</li>
+  </ol>-->
+
+  <app-lista-produktow [grupyProduktow]="grupy"></app-lista-produktow>
 
   <div>
     <button [routerLink]="['/zamowienie-produkty', zamowienie.id]">Zamów</button>

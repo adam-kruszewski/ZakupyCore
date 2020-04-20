@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ZamowieniaService } from '../zamowienia.service';
+import { ZamowieniaService, DefinicjaGrupy, DefinicjaProduktu } from '../zamowienia.service';
+import { GrupaProduktow, Produkt } from '../zamowienie-produkty/zamowienie-produkty.component';
+import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-zamowienie',
@@ -10,10 +13,26 @@ import { ZamowieniaService } from '../zamowienia.service';
 
 export class ZamowienieComponent implements OnInit {
   zamowienie;
+  grupy: Observable<any[]>;
 
   constructor(
     private route: ActivatedRoute,
     private zamowieniaService: ZamowieniaService) {
+  }
+
+  dajGrupe(data: DefinicjaGrupy) {
+    let grupa: GrupaProduktow;
+    grupa = new GrupaProduktow();
+    grupa.nazwa = data.nazwa;
+    grupa.limit = data.limit;
+    grupa.produkty = data.produkty.map(function (definicja: DefinicjaProduktu) : Produkt {
+      let produkt = new Produkt();
+      produkt.nazwa = definicja.nazwa;
+      produkt.cena = definicja.cena;
+
+      return produkt;
+    });
+    return grupa;
   }
 
   ngOnInit() {
@@ -22,6 +41,30 @@ export class ZamowienieComponent implements OnInit {
       this.zamowieniaService.getZamowienieByID(zamowienieID).then(data => {
         this.zamowienie = { nazwa: data.nazwa, id: data.id, data_konca: data.dataKonca };
       });
+
+      this.grupy =
+        this.zamowieniaService.getGrupyProduktowByID(zamowienieID)
+      .pipe(
+        map((data: any[]) =>
+          data.map((item: any) => this.dajGrupe(item))))
+      .pipe();
+
+      //.subscribe(result => {
+      //  let grupyLocal = result.map(function (g: DefinicjaGrupy) {
+      //    let grupa = new GrupaProduktow();
+      //    grupa.nazwa = g.nazwa;
+      //    grupa.limit = g.limit;
+
+      //    g.produkty.forEach(function (dp: DefinicjaProduktu) {
+      //      var p = new Produkt();
+      //      p.nazwa = dp.nazwa;
+      //      p.cena = dp.cena;
+      //      grupa.produkty.push(p);
+      //    });
+
+      //    return grupa;
+      //  });
     });
+    //});
   }
 }

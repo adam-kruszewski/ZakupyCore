@@ -1,7 +1,7 @@
 <ag-grid-angular #agGrid style="width: 600px; "
                  domLayout='autoHeight'
                  class="ag-theme-balham"
-                 [rowData]="rowData"
+                 [rowData]="wiersze | async"
                  [columnDefs]="columnDefs"
                  [frameworkComponents]="frameworkComponents"
                  [getRowClass]="getRowStyleScheduled">
