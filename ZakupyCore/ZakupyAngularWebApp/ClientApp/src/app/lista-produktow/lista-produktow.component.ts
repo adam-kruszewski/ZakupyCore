@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { NumberFormatterComponent } from '../number-formatter/number-formatter.component';
-import { Produkt, GrupaProduktow } from '../zamowienie-produkty/zamowienie-produkty.component';
-import { ZamowieniaService, DefinicjaGrupy, DefinicjaProduktu } from '../zamowienia.service';
+import { ZamowieniaService, Produkt, GrupaProduktow } from '../zamowienia.service';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 

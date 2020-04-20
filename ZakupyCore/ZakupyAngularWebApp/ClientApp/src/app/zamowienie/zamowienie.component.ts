@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ZamowieniaService, DefinicjaGrupy, DefinicjaProduktu } from '../zamowienia.service';
-import { GrupaProduktow, Produkt } from '../zamowienie-produkty/zamowienie-produkty.component';
+import { ZamowieniaService, GrupaProduktow, Produkt, DefinicjaGrupy, DefinicjaProduktu } from '../zamowienia.service';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 
@@ -13,7 +12,7 @@ import { map } from "rxjs/operators";
 
 export class ZamowienieComponent implements OnInit {
   zamowienie;
-  grupy: Observable<any[]>;
+  grupy: Observable<GrupaProduktow[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,11 +42,7 @@ export class ZamowienieComponent implements OnInit {
       });
 
       this.grupy =
-        this.zamowieniaService.getGrupyProduktowByID(zamowienieID)
-      .pipe(
-        map((data: any[]) =>
-          data.map((item: any) => this.dajGrupe(item))))
-      .pipe();
+        this.zamowieniaService.getGrupyProduktowByID(zamowienieID);
     });
   }
 }

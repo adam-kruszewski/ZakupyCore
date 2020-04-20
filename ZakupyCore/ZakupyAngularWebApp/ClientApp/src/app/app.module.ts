@@ -14,7 +14,6 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ZamowieniaComponent } from './zamowienia/zamowienia.component';
 import { ZamowienieComponent } from './zamowienie/zamowienie.component';
 import { ZamowienieProduktyComponent, GrupaProduktow } from './zamowienie-produkty/zamowienie-produkty.component';
-import { GrupaProduktowComponent } from './grupa-produktow/grupa-produktow.component';
 import { ListaProduktowComponent } from './lista-produktow/lista-produktow.component';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { ListaProduktowComponent } from './lista-produktow/lista-produktow.compo
     ZamowieniaComponent,
     ZamowienieComponent,
     ZamowienieProduktyComponent,
-    GrupaProduktowComponent,
     ListaProduktowComponent,
     NumberFormatterComponent
   ],

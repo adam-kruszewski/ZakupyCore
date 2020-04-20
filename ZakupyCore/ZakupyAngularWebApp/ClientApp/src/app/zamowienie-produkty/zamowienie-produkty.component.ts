@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ZamowieniaService } from '../zamowienia.service';
+import { GrupaProduktow, Produkt } from '../zamowienia.service';
 import { AgGridAngular } from 'ag-grid-angular';
 import { NumberFormatterComponent } from '../number-formatter/number-formatter.component';
 
@@ -28,8 +28,7 @@ export class ZamowienieProduktyComponent implements OnInit {
   rowData = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private zamowieniaService: ZamowieniaService) {
+    private route: ActivatedRoute) {
     this.grupyProduktow = [];
   }
 
@@ -92,18 +91,3 @@ export class ZamowienieProduktyComponent implements OnInit {
   }
 }
 
-export class GrupaProduktow {
-  nazwa: string;
-  limit: number;
-
-  produkty: Produkt[];
-
-  constructor() {
-    this.produkty = [];
-  }
-}
-
-export class Produkt {
-  nazwa: string;
-  cena: number;
-}
