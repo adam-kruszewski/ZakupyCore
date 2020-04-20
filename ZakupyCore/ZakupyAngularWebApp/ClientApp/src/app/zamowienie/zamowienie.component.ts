@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ZamowieniaService, GrupaProduktow, Produkt, DefinicjaGrupy, DefinicjaProduktu } from '../zamowienia.service';
+import { ZamowieniaService, GrupaProduktow, Produkt } from '../zamowienia.service';
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-zamowienie',
@@ -17,21 +16,6 @@ export class ZamowienieComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private zamowieniaService: ZamowieniaService) {
-  }
-
-  dajGrupe(data: DefinicjaGrupy) {
-    let grupa: GrupaProduktow;
-    grupa = new GrupaProduktow();
-    grupa.nazwa = data.nazwa;
-    grupa.limit = data.limit;
-    grupa.produkty = data.produkty.map(function (definicja: DefinicjaProduktu) : Produkt {
-      let produkt = new Produkt();
-      produkt.nazwa = definicja.nazwa;
-      produkt.cena = definicja.cena;
-
-      return produkt;
-    });
-    return grupa;
   }
 
   ngOnInit() {

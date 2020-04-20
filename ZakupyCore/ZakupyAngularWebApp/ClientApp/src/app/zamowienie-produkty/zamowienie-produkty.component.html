@@ -1,10 +1,5 @@
 <h3> Zamów produkty</h3>
 
-<ag-grid-angular #agGrid style="width: 500px; "
-                 domLayout='autoHeight'
-                 class="ag-theme-balham"
-                 [rowData]="rowData"
-                 [columnDefs]="columnDefs"
-                 [frameworkComponents]="frameworkComponents"
-                 [getRowClass]="getRowStyleScheduled">
-</ag-grid-angular>
+<app-lista-produktow [grupyProduktow]="grupyProduktow"
+                     [wyswietlacIlosc]="true">
+</app-lista-produktow>
