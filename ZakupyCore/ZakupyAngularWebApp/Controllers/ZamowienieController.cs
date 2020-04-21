@@ -47,11 +47,17 @@ namespace ZakupyAngularWebApp.Controllers
                     DataKoncaZamawiania = request.DataKoncaZamawiania
                 });
 
-            return new DodanieZamowieniaResult
-            {
-                Sukces = true,
-                ID = wstawionaID.Value
-            };
+            if (wstawionaID.HasValue)
+                return new DodanieZamowieniaResult
+                {
+                    Sukces = true,
+                    ID = wstawionaID.Value
+                };
+            else
+                return new DodanieZamowieniaResult
+                {
+                    Sukces = false
+                };
         }
 
         private class Definicja : IDefinicjaZamowienia
