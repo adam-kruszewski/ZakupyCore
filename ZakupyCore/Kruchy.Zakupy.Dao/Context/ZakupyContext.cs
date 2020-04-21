@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Kruchy.Zakupy.Dao.Context.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kruchy.Zakupy.Dao.Context
@@ -8,6 +6,8 @@ namespace Kruchy.Zakupy.Dao.Context
     public class ZakupyContext : DbContext
     {
         public DbSet<UzytkownikEntity> Uzytkownicy { get; set; }
+
+        public DbSet<DefinicjaZamowienia> DefinicjeZamowienia { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
