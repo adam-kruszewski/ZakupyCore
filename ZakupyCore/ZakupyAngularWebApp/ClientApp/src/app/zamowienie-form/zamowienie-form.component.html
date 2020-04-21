@@ -1,21 +1,29 @@
 <h3>Dodawania zamówienia</h3>
+<div class="container">
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
 
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+    <div class="form-group">
+      <label for="nazwa">
+        Nazwa:
+      </label>
+      <input id="nazwa" type="text" formControlName="nazwa" required>
+    </div>
 
-  <div>
-    <label for="nazwa">
-      Nazwa:
-    </label>
-    <input id="name" type="text" formControlName="nazwa">
-  </div>
+    <div class="form-group">
+      <label for="data_konca">
+        Data końca zamawiania:
+      </label>
 
-  <div>
-    <label for="data_konca">
-      Data końca zamawiania:
-    </label>
-    <input id="address" type="text" formControlName="data_konca">
-  </div>
+      <input id="data_konca" type="text" [matDatepicker]="data_konca" formControlName="data_konca" required>
+      <mat-datepicker-toggle [for]="data_konca"></mat-datepicker-toggle>
+      <mat-datepicker #data_konca></mat-datepicker>
 
-  <button class="button" type="submit">Dodaj</button>
+    </div>
 
-</form>
+    <button class="button" type="submit" [disabled]="!checkoutForm.valid">Dodaj</button>
+    <p>
+      Form Status: {{ checkoutForm.status }}
+    </p>
+  </form>
+
+</div>

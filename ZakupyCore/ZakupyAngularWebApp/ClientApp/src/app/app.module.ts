@@ -17,6 +17,9 @@ import { ZamowienieFormComponent } from './zamowienie-form/zamowienie-form.compo
 import { ZamowienieProduktyComponent } from './zamowienie-produkty/zamowienie-produkty.component';
 import { ListaProduktowComponent } from './lista-produktow/lista-produktow.component';
 import { IloscFormatterComponent } from './ilosc-formatter/ilosc-formatter.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { IloscFormatterComponent } from './ilosc-formatter/ilosc-formatter.compo
     IloscFormatterComponent
   ],
   imports: [
+    MatDatepickerModule, MatNativeDateModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
@@ -47,7 +51,8 @@ import { IloscFormatterComponent } from './ilosc-formatter/ilosc-formatter.compo
       { path: 'zamowienie-form', component: ZamowienieFormComponent },
       { path: 'zamowienie/:zamowienieID', component: ZamowienieComponent },
       { path: 'zamowienie-produkty/:zamowienieID', component: ZamowienieProduktyComponent }
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

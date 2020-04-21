@@ -3,6 +3,8 @@
 /* Provide sufficient contrast against white background */
 @import 'ag-grid-community/dist/styles/ag-grid.css';
 @import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
 
 a {
   color: #0366d6;
@@ -29,3 +31,6 @@ app-grupa-produktow {
 .wiersz-grupy {
   font-weight: bold;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
