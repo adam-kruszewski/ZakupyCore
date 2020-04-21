@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Kruchy.Uzytkownicy.Dao;
 using Kruchy.Zakupy.Dao.Context;
 using Kruchy.Zakupy.Dao.Dao;
+using Kruchy.Zamowienia.Dao;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -30,6 +30,7 @@ namespace Kruchy.Zakupy.Dao
             }
 
             services.AddScoped<IUzytkownikDao, UzytkownikDao>();
+            services.AddScoped<IDefinicjaZamowieniaDao, DefinicjaZamowieniaDao>();
             services.AddDbContext<ZakupyContext>();
         }
     }

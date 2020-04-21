@@ -2,6 +2,7 @@ using Kruchy.Uzytkownicy;
 using Kruchy.Uzytkownicy.Services;
 using Kruchy.Uzytkownicy.Services.Impl;
 using Kruchy.Zakupy.Dao;
+using Kruchy.Zamowienia;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -32,6 +33,7 @@ namespace ZakupyAngularWebApp
 
             new KruchyZakupyDaoModule().Init(services);
             new KruchyUzytkownicyModule().Init(services);
+            new KrucheZamowieniaModule().Init(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

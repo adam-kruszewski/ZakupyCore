@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Kruchy.Uzytkownicy\Kruchy.Uzytkownicy.csproj" />
+    <ProjectReference Include="..\Kruchy.Zamowienia\Kruchy.Zamowienia.csproj" />
   </ItemGroup>
 
 </Project>

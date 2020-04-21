@@ -1,4 +1,6 @@
 ﻿using System;
+using Kruchy.Zamowienia.Model;
+using Kruchy.Zamowienia.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ZakupyAngularWebApp.Controllers
@@ -6,6 +8,14 @@ namespace ZakupyAngularWebApp.Controllers
     [Route("api/[controller]")]
     public class ZamowienieController : Controller
     {
+        private readonly IDefinicjeZamowienService definicjeService;
+
+        public ZamowienieController(
+            IDefinicjeZamowienService definicjeService)
+        {
+            this.definicjeService = definicjeService;
+        }
+
         [HttpGet]
         public DefinicjaZamowienia Get(int id)
         {
@@ -30,11 +40,27 @@ namespace ZakupyAngularWebApp.Controllers
         [HttpPut]
         public DodanieZamowieniaResult Put([FromBody] DodawanieZamowowieniaRequest request)
         {
+            var wstawionaID = definicjeService.Wstaw(
+                new Definicja
+                {
+                    Nazwa = request.Nazwa,
+                    DataKoncaZamawiania = request.DataKoncaZamawiania
+                });
+
             return new DodanieZamowieniaResult
             {
                 Sukces = true,
-                ID = 2020
+                ID = wstawionaID.Value
             };
+        }
+
+        private class Definicja : IDefinicjaZamowienia
+        {
+            public int ID { get; set; }
+
+            public string Nazwa { get; set; }
+
+            public DateTime DataKoncaZamawiania { get; set; }
         }
     }
 
