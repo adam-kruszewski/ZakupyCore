@@ -26,6 +26,16 @@ namespace ZakupyAngularWebApp.Controllers
                 ID = 2016
             };
         }
+
+        [HttpPut]
+        public DodanieZamowieniaResult Put([FromBody] DodawanieZamowowieniaRequest request)
+        {
+            return new DodanieZamowieniaResult
+            {
+                Sukces = true,
+                ID = 2020
+            };
+        }
     }
 
     public class DodawanieZamowowieniaRequest
