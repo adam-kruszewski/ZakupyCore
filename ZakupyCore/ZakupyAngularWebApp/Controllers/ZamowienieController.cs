@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ZakupyAngularWebApp.Controllers
 {
-    [Route("api/zamowienie")]
+    [Route("api/[controller]")]
     public class ZamowienieController : Controller
     {
         [HttpGet]
-        public DefinicjaZamowienia DajWgID(int id)
+        public DefinicjaZamowienia Get(int id)
         {
             return new DefinicjaZamowienia
             {
@@ -16,5 +16,29 @@ namespace ZakupyAngularWebApp.Controllers
                 DataKonca = DateTime.Now.AddDays(2)
             };
         }
+
+        [HttpPost]
+        public DodanieZamowieniaResult Post([FromBody] DodawanieZamowowieniaRequest request)
+        {
+            return new DodanieZamowieniaResult
+            {
+                Sukces = true,
+                ID = 2016
+            };
+        }
+    }
+
+    public class DodawanieZamowowieniaRequest
+    {
+        public string Nazwa { get; set; }
+
+        public DateTime DataKoncaZamawiania { get; set; }
+    }
+
+    public class DodanieZamowieniaResult
+    {
+        public bool Sukces { get; set; }
+
+        public int ID { get; set; }
     }
 }
