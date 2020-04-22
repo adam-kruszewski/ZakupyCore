@@ -27,7 +27,28 @@ export class ZamowieniaService {
         ));
   }
 
-  dajGrupe(data: DefinicjaGrupy): GrupaProduktow {
+  dodajDefinicje(definicja: DefinicjaZamowienia): Promise<number | null> {
+    //: Promise<number | null> {
+    var definicjaRequest = new DodawanieZamowowieniaRequest();
+    definicjaRequest.nazwa = definicja.nazwa;
+    definicjaRequest.dataKoncaZamawiania = definicja.dataKonca;
+
+    return this.http.put('api/zamowienie', definicjaRequest)
+      .toPromise()
+      .then<number | any>(
+        (data: any) => {
+          let wynik: number | null;
+
+          if (data.sukces)
+            wynik = data.id;
+          else
+            wynik = null;
+
+          return Promise.resolve<number | null>(wynik);
+        });
+  }
+
+  private dajGrupe(data: DefinicjaGrupy): GrupaProduktow {
     let grupa: GrupaProduktow;
     grupa = new GrupaProduktow();
     grupa.nazwa = data.nazwa;
@@ -64,6 +85,12 @@ class DefinicjaGrupy {
   limit: number;
 
   produkty: DefinicjaProduktu[]
+}
+
+class DodawanieZamowowieniaRequest {
+  nazwa: string;
+
+  dataKoncaZamawiania: Date;
 }
 
 export class GrupaProduktow {
