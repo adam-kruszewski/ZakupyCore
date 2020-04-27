@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { ValidationInfoComponent } from './validation-info/validation-info.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     ListaProduktowComponent,
     NumberFormatterComponent,
     IloscFormatterComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    ValidationInfoComponent
   ],
   imports: [
     MatDatepickerModule, MatNativeDateModule,
