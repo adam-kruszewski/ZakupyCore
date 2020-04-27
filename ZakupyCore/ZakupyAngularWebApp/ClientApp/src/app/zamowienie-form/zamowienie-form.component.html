@@ -7,6 +7,22 @@
         Nazwa:
       </label>
       <input id="nazwa" type="text" formControlName="nazwa" required>
+
+      <p>
+        Nazwa
+        {{ checkoutForm.nazwa}}
+      </p>
+      <div *ngIf="checkoutForm.controls.nazwa.invalid">
+        Testy
+      </div>
+
+      <div *ngIf="checkoutForm.controls.nazwa.invalid && (checkoutForm.controls.nazwa.dirty || checkoutForm.controls.nazwa.touched)"
+           class="alert alert-danger">
+        <div *ngIf="checkoutForm.controls.nazwa.errors.required">
+          Name is required.
+        </div>
+      </div>
+
     </div>
 
     <div class="form-group">
@@ -18,12 +34,26 @@
       <mat-datepicker-toggle [for]="data_konca"></mat-datepicker-toggle>
       <mat-datepicker #data_konca></mat-datepicker>
 
+      <!--<label for="file">Choose File</label>
+      <input type="file"
+             id="file"
+             (change)="handleFileInput($event.target.files)">-->
+
+    </div>
+
+    <div class="form-group">
+      <label for="file2">Wybierz plik</label>
+      <app-file-upload #file1 (uploaded)="onFileLoaded()" [id]="'file2'"></app-file-upload>
     </div>
 
     <button class="button" type="submit" [disabled]="!checkoutForm.valid">Dodaj</button>
     <p>
       Form Status: {{ checkoutForm.status }}
+
+
+
     </p>
+    <p>Form valid: {{ checkoutForm.valid }}</p>
   </form>
 
 </div>
