@@ -3,4 +3,8 @@
   <div *ngIf="control.errors.required">
     Pole "{{controlLabel}}" jest wymagane.
   </div>
+
+  <div *ngFor="let validationError of validationErrorsFunctions">
+    <div *ngIf="validationError.checkDisplayFunction(control)">{{validationError.text}}</div>
+  </div>
 </div>

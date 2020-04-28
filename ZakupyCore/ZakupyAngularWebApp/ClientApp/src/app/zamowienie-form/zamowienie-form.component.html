@@ -1,44 +1,52 @@
 <h3>Dodawania zamówienia</h3>
 <div class="container">
   <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+    <div class=" form-horizontal">
 
-    <div class="form-group">
-      <label for="nazwa">
-        Nazwa:
-      </label>
-      <input id="nazwa" type="text" formControlName="nazwa" required>
+      <div class="form-group">
+        <div class="col-md-3">
+          <label for="nazwa">
+            Nazwa:
+          </label>
+        </div>
+        <div class="col-md-5">
+          <input id="nazwa" type="text" formControlName="nazwa" required>
 
-      <app-validation-info [control]="checkoutForm.controls.nazwa" [controlLabel]="'Nazwa'">
-      </app-validation-info>
+          <app-validation-info [control]="checkoutForm.controls.nazwa" [controlLabel]="'Nazwa'">
+          </app-validation-info>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-3">
+          <label for="data_konca">
+            Data końca zamawiania:
+          </label>
+        </div>
+
+        <div class="col-md-5">
+          <input id="data_konca" type="text" [matDatepicker]="data_konca" formControlName="data_konca" required>
+          <mat-datepicker-toggle [for]="data_konca"></mat-datepicker-toggle>
+          <mat-datepicker #data_konca></mat-datepicker>
+
+          <app-validation-info [control]="checkoutForm.controls.data_konca"
+                               [controlLabel]="'Data końca'"
+                               [validationErrorsFunctions]="dataKoncaValidationErrors">
+          </app-validation-info>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-3">
+          <label for="file2">Excel z definicją zamówienia</label>
+        </div>
+        <div class="col-md-5">
+          <app-file-upload #file1 (uploaded)="onFileLoaded()" [id]="'file2'"></app-file-upload>
+        </div>
+      </div>
+
+      <button class="button" type="submit" [disabled]="!checkoutForm.valid">Dodaj</button>
     </div>
-
-    <div class="form-group">
-      <label for="data_konca">
-        Data końca zamawiania:
-      </label>
-
-      <input id="data_konca" type="text" [matDatepicker]="data_konca" formControlName="data_konca" required>
-      <mat-datepicker-toggle [for]="data_konca"></mat-datepicker-toggle>
-      <mat-datepicker #data_konca></mat-datepicker>
-
-      <app-validation-info [control]="checkoutForm.controls.data_konca" [controlLabel]="'Data końca'">
-      </app-validation-info>
-
-    </div>
-
-    <div class="form-group">
-      <label for="file2">Wybierz plik</label>
-      <app-file-upload #file1 (uploaded)="onFileLoaded()" [id]="'file2'"></app-file-upload>
-    </div>
-
-    <button class="button" type="submit" [disabled]="!checkoutForm.valid">Dodaj</button>
-    <p>
-      Form Status: {{ checkoutForm.status }}
-
-
-
-    </p>
-    <p>Form valid: {{ checkoutForm.valid }}</p>
   </form>
 
 </div>
