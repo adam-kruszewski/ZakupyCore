@@ -4,11 +4,8 @@
     <div class=" form-horizontal">
 
       <div class="form-group">
-        <div class="col-md-3">
-          <label for="nazwa">
-            Nazwa:
-          </label>
-        </div>
+        <app-form-label [controlID]="'nazwa'" [text]="'Nazwa'"></app-form-label>
+
         <div class="col-md-5">
           <input id="nazwa" type="text" formControlName="nazwa" required>
 
@@ -18,11 +15,7 @@
       </div>
 
       <div class="form-group">
-        <div class="col-md-3">
-          <label for="data_konca">
-            Data końca zamawiania:
-          </label>
-        </div>
+        <app-form-label [controlID]="'data_konca'" [text]="'Data końca zamawiania'"></app-form-label>
 
         <div class="col-md-5">
           <input id="data_konca" type="text" [matDatepicker]="data_konca" formControlName="data_konca" required>
@@ -37,9 +30,7 @@
       </div>
 
       <div class="form-group">
-        <div class="col-md-3">
-          <label for="file2">Excel z definicją zamówienia</label>
-        </div>
+        <app-form-label [controlID]="'file2'" [text]="'Excel z definicją zamówienia'"></app-form-label>
         <div class="col-md-5">
           <app-file-upload #file1 (uploaded)="onFileLoaded()" [id]="'file2'"></app-file-upload>
         </div>

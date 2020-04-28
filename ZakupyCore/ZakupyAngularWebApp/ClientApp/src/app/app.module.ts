@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ValidationInfoComponent } from './validation-info/validation-info.component';
+import { FormLabelComponent } from './form-label/form-label.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ValidationInfoComponent } from './validation-info/validation-info.compo
     NumberFormatterComponent,
     IloscFormatterComponent,
     FileUploadComponent,
-    ValidationInfoComponent
+    ValidationInfoComponent,
+    FormLabelComponent
   ],
   imports: [
     MatDatepickerModule, MatNativeDateModule,
