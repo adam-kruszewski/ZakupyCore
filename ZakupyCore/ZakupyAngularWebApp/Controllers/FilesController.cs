@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
+using ZakupyAngularWebApp.Services;
 
 namespace ZakupyAngularWebApp.Controllers
 {
     [Route("api/[controller]")]
     public class FilesController : Controller
     {
+        private readonly IUploadedFilesService uploadedFilesService;
+
+        public FilesController(
+            IUploadedFilesService uploadedFilesService)
+        {
+            this.uploadedFilesService = uploadedFilesService;
+        }
+
         public FileResult[] Upload()
         {
             var httpRequest = HttpContext.Request;
@@ -18,17 +27,7 @@ namespace ZakupyAngularWebApp.Controllers
 
             foreach (var file in files)
             {
-                var tempPath = Path.GetTempPath();
-
-                var fileID = "zakupyCore____" + Guid.NewGuid().ToString();
-
-                var nazwa = Path.Combine(tempPath, fileID);
-
-                using (FileStream fs = new FileStream(nazwa, FileMode.Create))
-                {
-                    file.CopyTo(fs);
-                    fs.Flush();
-                }
+                var fileID = uploadedFilesService.SaveFile(file);
 
                 resultFiles.Add(new FileResult(fileID, file.FileName));
             }

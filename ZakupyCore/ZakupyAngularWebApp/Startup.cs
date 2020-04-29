@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ZakupyAngularWebApp.Services;
+using ZakupyAngularWebApp.Services.Impl;
 
 namespace ZakupyAngularWebApp
 {
@@ -34,6 +36,8 @@ namespace ZakupyAngularWebApp
             new KruchyZakupyDaoModule().Init(services);
             new KruchyUzytkownicyModule().Init(services);
             new KrucheZamowieniaModule().Init(services);
+
+            services.AddTransient<IUploadedFilesService, UploadedFilesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
