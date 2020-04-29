@@ -3,14 +3,16 @@ using System;
 using Kruchy.Zakupy.Dao.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Kruchy.Zakupy.Dao.Migrations
 {
     [DbContext(typeof(ZakupyContext))]
-    partial class ZakupyContextModelSnapshot : ModelSnapshot
+    [Migration("20200429092255_AddProductGroup")]
+    partial class AddProductGroup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,31 +57,6 @@ namespace Kruchy.Zakupy.Dao.Migrations
                     b.ToTable("GrupyProduktow");
                 });
 
-            modelBuilder.Entity("Kruchy.Zakupy.Dao.Context.Entities.Produkt", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("Cena")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("GrupaProduktowId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Nazwa")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("NumerWierszaWExcelu")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GrupaProduktowId");
-
-                    b.ToTable("Produkt");
-                });
-
             modelBuilder.Entity("Kruchy.Zakupy.Dao.Context.UzytkownikEntity", b =>
                 {
                     b.Property<int>("ID")
@@ -105,15 +82,6 @@ namespace Kruchy.Zakupy.Dao.Migrations
                     b.HasOne("Kruchy.Zakupy.Dao.Context.Entities.DefinicjaZamowienia", null)
                         .WithMany("GrupyProduktow")
                         .HasForeignKey("DefinicjaZamowieniaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Kruchy.Zakupy.Dao.Context.Entities.Produkt", b =>
-                {
-                    b.HasOne("Kruchy.Zakupy.Dao.Context.Entities.GrupaProduktow", null)
-                        .WithMany("Produkty")
-                        .HasForeignKey("GrupaProduktowId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

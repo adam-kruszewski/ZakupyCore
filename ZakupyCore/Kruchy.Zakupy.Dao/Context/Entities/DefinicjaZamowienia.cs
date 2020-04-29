@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Kruchy.Zakupy.Dao.Context.Entities
 {
@@ -9,5 +10,7 @@ namespace Kruchy.Zakupy.Dao.Context.Entities
         public string Nazwa { get; set; }
 
         public DateTime DataKoncaZamawiania { get; set; }
+
+        public List<GrupaProduktow> GrupyProduktow { get; set; }
     }
 }
