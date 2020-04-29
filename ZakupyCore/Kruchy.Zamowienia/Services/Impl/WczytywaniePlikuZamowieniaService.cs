@@ -1,7 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
+using System.Linq;
 using Kruchy.Zamowienia.Model.PlikZamowienia;
+using OfficeOpenXml;
 
 namespace Kruchy.Zamowienia.Services.Impl
 {
@@ -24,27 +25,27 @@ namespace Kruchy.Zamowienia.Services.Impl
         {
             var wynik = new Zamowienie();
             wynik.Nazwa = DajNazweZamowienia(sciezka);
-            //var wynikOtwarcia = DajSheetZamowienia(sciezka);
-            //var sheetZamowienia = wynikOtwarcia.Worksheet;
+            var wynikOtwarcia = DajSheetZamowienia(sciezka);
+            var sheetZamowienia = wynikOtwarcia.Worksheet;
 
-            //int aktIndexWiersza = 4;
-            //GrupaProduktow aktGrupa = null;
-            //do
-            //{
-            //    if (WierszPoczatkuGrupy(sheetZamowienia, aktIndexWiersza))
-            //        aktGrupa = DodajNowaGrupeProduktow(
-            //            wynik,
-            //            sheetZamowienia,
-            //            aktIndexWiersza);
-            //    else
-            //        DodajNowaPozycje(
-            //            aktGrupa,
-            //            sheetZamowienia,
-            //            aktIndexWiersza);
-            //    aktIndexWiersza++;
-            //} while (PierwszyWierszZaZamowieniem(sheetZamowienia, aktIndexWiersza));
+            int aktIndexWiersza = 4;
+            GrupaProduktow aktGrupa = null;
+            do
+            {
+                if (WierszPoczatkuGrupy(sheetZamowienia, aktIndexWiersza))
+                    aktGrupa = DodajNowaGrupeProduktow(
+                        wynik,
+                        sheetZamowienia,
+                        aktIndexWiersza);
+                else
+                    DodajNowaPozycje(
+                        aktGrupa,
+                        sheetZamowienia,
+                        aktIndexWiersza);
+                aktIndexWiersza++;
+            } while (PierwszyWierszZaZamowieniem(sheetZamowienia, aktIndexWiersza));
 
-            //wynikOtwarcia.Package.Dispose();
+            wynikOtwarcia.Package.Dispose();
             return wynik;
         }
 
@@ -54,80 +55,80 @@ namespace Kruchy.Zamowienia.Services.Impl
             return fileInfo.Name;
         }
 
-        //private Produkt DodajNowaPozycje(
-        //    GrupaProduktow aktGrupa,
-        //    ExcelWorksheet sheetZamowienia,
-        //    int aktIndexWiersza)
-        //{
-        //    var pozycja = new Produkt();
-        //    pozycja.Nazwa = sheetZamowienia.Cell(aktIndexWiersza, KolumnaNazwaPozycji).Value;
-        //    pozycja.NumerPozycjiWExcelu = aktIndexWiersza;
-        //    var wartoscIlosci = sheetZamowienia.Cell(aktIndexWiersza, KolumnaIlosc).Value;
+        private Produkt DodajNowaPozycje(
+            GrupaProduktow aktGrupa,
+            ExcelWorksheet sheetZamowienia,
+            int aktIndexWiersza)
+        {
+            var pozycja = new Produkt();
+            pozycja.Nazwa = sheetZamowienia.Cells[aktIndexWiersza, KolumnaNazwaPozycji].Value?.ToString();
+            pozycja.NumerPozycjiWExcelu = aktIndexWiersza;
+            var wartoscIlosci = sheetZamowienia.Cells[aktIndexWiersza, KolumnaIlosc].Value?.ToString();
 
-        //    if (string.IsNullOrEmpty(wartoscIlosci))
-        //        pozycja.Ilosc = 0;
-        //    else
-        //        pozycja.Ilosc = int.Parse(wartoscIlosci);
-        //    pozycja.Cena = sheetZamowienia.Cell(aktIndexWiersza, KolumnaCena).Value;
+            if (string.IsNullOrEmpty(wartoscIlosci))
+                pozycja.Ilosc = 0;
+            else
+                pozycja.Ilosc = int.Parse(wartoscIlosci);
+            pozycja.Cena = sheetZamowienia.Cells[aktIndexWiersza, KolumnaCena].Value?.ToString();
 
-        //    aktGrupa.Pozycje.Add(pozycja);
-        //    return pozycja;
-        //}
+            aktGrupa.Pozycje.Add(pozycja);
+            return pozycja;
+        }
 
-        //private GrupaProduktow DodajNowaGrupeProduktow(
-        //    Zamowienie wynik,
-        //    ExcelWorksheet sheetZamowienia,
-        //    int aktIndexWiersza)
-        //{
-        //    var aktGrupa = new GrupaProduktow();
-        //    aktGrupa.Nazwa = sheetZamowienia.Cell(aktIndexWiersza, KolumnaNazwaPozycji).Value;
-        //    wynik.GrupyProduktow.Add(aktGrupa);
-        //    return aktGrupa;
-        //}
+        private GrupaProduktow DodajNowaGrupeProduktow(
+            Zamowienie wynik,
+            ExcelWorksheet sheetZamowienia,
+            int aktIndexWiersza)
+        {
+            var aktGrupa = new GrupaProduktow();
+            aktGrupa.Nazwa = sheetZamowienia.Cells[aktIndexWiersza, KolumnaNazwaPozycji].Value?.ToString();
+            wynik.GrupyProduktow.Add(aktGrupa);
+            return aktGrupa;
+        }
 
-        //private bool WierszPoczatkuGrupy(ExcelWorksheet sheet, int aktIndexWiersza)
-        //{
-        //    var komorka = sheet.Cell(aktIndexWiersza, KolumnaCena);
-        //    var wartosc = komorka.Value;
+        private bool WierszPoczatkuGrupy(ExcelWorksheet sheet, int aktIndexWiersza)
+        {
+            var komorka = sheet.Cells[aktIndexWiersza, KolumnaCena];
+            var wartosc = komorka.Value?.ToString();
 
-        //    if (sheet.Cell(aktIndexWiersza, KolumnaNazwaPozycji).Value == "--")
-        //        return false;
-        //    if (string.IsNullOrEmpty(wartosc))
-        //        return true;
+            if (sheet.Cells[aktIndexWiersza, KolumnaNazwaPozycji].Value?.ToString() == "--")
+                return false;
+            if (string.IsNullOrEmpty(wartosc))
+                return true;
 
-        //    if (wartosc.All(o => char.IsDigit(o) || o == '.' || o == ','))
-        //        return false;
+            if (wartosc.All(o => char.IsDigit(o) || o == '.' || o == ','))
+                return false;
 
-        //    return true;
+            return true;
 
-        //}
+        }
 
-        //private bool PierwszyWierszZaZamowieniem(
-        //    ExcelWorksheet sheetZamowienia,
-        //    int aktIndexWiersza)
-        //{
-        //    return !string.IsNullOrEmpty(
-        //        sheetZamowienia.Cell(aktIndexWiersza, KolumnaNazwaPozycji).Value);
-        //}
+        private bool PierwszyWierszZaZamowieniem(
+            ExcelWorksheet sheetZamowienia,
+            int aktIndexWiersza)
+        {
+            return !string.IsNullOrEmpty(
+                sheetZamowienia.Cells[aktIndexWiersza, KolumnaNazwaPozycji].Value?.ToString());
+        }
 
-        //private WynikOtwarcia DajSheetZamowienia(string sciezka)
-        //{
-        //    var fileInfo = new FileInfo(sciezka);
-        //    ExcelPackage package = new ExcelPackage(fileInfo);
-        //    var workbook = package.Workbook;
-        //    var wynik = new WynikOtwarcia()
-        //    {
-        //        Worksheet = workbook.Worksheets[1],
-        //        Package = package
-        //    };
-        //    return wynik;
-        //}
+        private WynikOtwarcia DajSheetZamowienia(string sciezka)
+        {
+            var fileInfo = new FileInfo(sciezka);
+            ExcelPackage package = new ExcelPackage(fileInfo);
+            var workbook = package.Workbook;
+            var wynik = new WynikOtwarcia()
+            {
+                Worksheet = workbook.Worksheets[1],
+                Package = package
+            };
+            return wynik;
+        }
 
-        //private class WynikOtwarcia
-        //{
-        //    public ExcelWorksheet Worksheet { get; set; }
-        //    public ExcelPackage Package { get; set; }
-        //}
+        private class WynikOtwarcia
+        {
+            public ExcelWorksheet Worksheet { get; set; }
+            public ExcelPackage Package { get; set; }
+        }
 
         private class TymczasowyPlik : IDisposable
         {
