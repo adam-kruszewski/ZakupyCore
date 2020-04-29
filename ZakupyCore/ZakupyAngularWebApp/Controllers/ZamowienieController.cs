@@ -75,6 +75,8 @@ namespace ZakupyAngularWebApp.Controllers
         public string Nazwa { get; set; }
 
         public DateTime DataKoncaZamawiania { get; set; }
+
+        public string KluczPliku { get; set; }
     }
 
     public class DodanieZamowieniaResult

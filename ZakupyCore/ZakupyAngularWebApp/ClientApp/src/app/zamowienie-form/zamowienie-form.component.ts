@@ -44,6 +44,7 @@ export class ZamowienieFormComponent implements OnInit {
     let definicja: DefinicjaZamowienia = new DefinicjaZamowienia();
     definicja.nazwa = customerData.nazwa;
     definicja.dataKonca = customerData.data_konca;
+    definicja.kluczPliku = this.plik.fileID;
 
     this.zamowieniaService.dodajDefinicje(definicja).then(data => {
       if (data != null)

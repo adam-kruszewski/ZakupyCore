@@ -32,6 +32,7 @@ export class ZamowieniaService {
     var definicjaRequest = new DodawanieZamowowieniaRequest();
     definicjaRequest.nazwa = definicja.nazwa;
     definicjaRequest.dataKoncaZamawiania = definicja.dataKonca;
+    definicjaRequest.kluczPliku = definicja.kluczPliku;
 
     return this.http.put('api/zamowienie', definicjaRequest)
       .toPromise()
@@ -72,6 +73,7 @@ export class DefinicjaZamowienia {
   id: number;
   nazwa: string;
   dataKonca: Date;
+  kluczPliku: string;
 }
 
 class DefinicjaProduktu {
@@ -89,8 +91,8 @@ class DefinicjaGrupy {
 
 class DodawanieZamowowieniaRequest {
   nazwa: string;
-
   dataKoncaZamawiania: Date;
+  kluczPliku: string;
 }
 
 export class GrupaProduktow {
