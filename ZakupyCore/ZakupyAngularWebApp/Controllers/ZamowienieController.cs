@@ -2,6 +2,7 @@
 using Kruchy.Zamowienia.Model;
 using Kruchy.Zamowienia.Services;
 using Microsoft.AspNetCore.Mvc;
+using ZakupyAngularWebApp.Services;
 
 namespace ZakupyAngularWebApp.Controllers
 {
@@ -9,11 +10,14 @@ namespace ZakupyAngularWebApp.Controllers
     public class ZamowienieController : Controller
     {
         private readonly IDefinicjeZamowienService definicjeService;
+        private readonly IUploadedFilesService uploadedFilesService;
 
         public ZamowienieController(
-            IDefinicjeZamowienService definicjeService)
+            IDefinicjeZamowienService definicjeService,
+            IUploadedFilesService uploadedFilesService)
         {
             this.definicjeService = definicjeService;
+            this.uploadedFilesService = uploadedFilesService;
         }
 
         [HttpGet]
@@ -55,12 +59,13 @@ namespace ZakupyAngularWebApp.Controllers
                 };
         }
 
-        private static WstawienieDefinicjiZamowieniaRequest DajRequestWstawienia(DodawanieZamowowieniaRequest request)
+        private WstawienieDefinicjiZamowieniaRequest DajRequestWstawienia(DodawanieZamowowieniaRequest request)
         {
             return new WstawienieDefinicjiZamowieniaRequest
             {
                 Nazwa = request.Nazwa,
-                DataKoncaZamawiania = request.DataKoncaZamawiania
+                DataKoncaZamawiania = request.DataKoncaZamawiania,
+                ZawartoscPliku = uploadedFilesService.GetFile(request.KluczPliku)
             };
         }
 

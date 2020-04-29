@@ -12,6 +12,7 @@ namespace Kruchy.Zamowienia
         {
             services.AddTransient<IDefinicjeZamowienService, DefinicjeZamowienService>();
             services.AddTransient<IWalidacjaDefinicjiZamowienia, WalidacjaDefinicjiZamowienia>();
+            services.AddTransient<IWczytywaniePlikuZamowieniaService, WczytywaniePlikuZamowieniaService>();
         }
     }
 }

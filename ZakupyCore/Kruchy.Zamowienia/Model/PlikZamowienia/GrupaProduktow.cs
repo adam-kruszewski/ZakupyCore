@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Kruchy.Zamowienia.Model.PlikZamowienia
 {
-    class GrupaProduktow
+    public class GrupaProduktow
     {
         public string Nazwa { get; set; }
 
@@ -90,6 +90,11 @@ namespace Kruchy.Zamowienia.Model.PlikZamowienia
         private static bool JestPodanaIlosc(Produkt o)
         {
             return o.Ilosc.HasValue && o.Ilosc > 0;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} limit: {1}", Nazwa, MinimalneIlosci);
         }
     }
 }

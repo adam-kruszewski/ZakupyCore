@@ -114,11 +114,12 @@ namespace Kruchy.Zamowienia.Services.Impl
         private WynikOtwarcia DajSheetZamowienia(string sciezka)
         {
             var fileInfo = new FileInfo(sciezka);
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage package = new ExcelPackage(fileInfo);
             var workbook = package.Workbook;
             var wynik = new WynikOtwarcia()
             {
-                Worksheet = workbook.Worksheets[1],
+                Worksheet = workbook.Worksheets[0],
                 Package = package
             };
             return wynik;

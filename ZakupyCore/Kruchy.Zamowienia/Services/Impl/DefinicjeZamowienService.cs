@@ -10,13 +10,16 @@ namespace Kruchy.Zamowienia.Services.Impl
     {
         private readonly IDefinicjaZamowieniaDao definicjaZamowieniaDao;
         private readonly IWalidacjaDefinicjiZamowienia walidacjaDefinicji;
+        private readonly IWczytywaniePlikuZamowieniaService wczytywaniePlikuZamowieniaService;
 
         public DefinicjeZamowienService(
             IDefinicjaZamowieniaDao definicjaZamowieniaDao,
-            IWalidacjaDefinicjiZamowienia walidacjaDefinicji)
+            IWalidacjaDefinicjiZamowienia walidacjaDefinicji,
+            IWczytywaniePlikuZamowieniaService wczytywaniePlikuZamowieniaService)
         {
             this.definicjaZamowieniaDao = definicjaZamowieniaDao;
             this.walidacjaDefinicji = walidacjaDefinicji;
+            this.wczytywaniePlikuZamowieniaService = wczytywaniePlikuZamowieniaService;
         }
 
         public int? Wstaw(WstawienieDefinicjiZamowieniaRequest request)
@@ -29,6 +32,10 @@ namespace Kruchy.Zamowienia.Services.Impl
 
             if (WalidacjaHelper.Waliduj(o => walidacjaDefinicji.Waliduj(definicja, o)))
                 return null;
+
+            var definicjaZamowienia =
+                wczytywaniePlikuZamowieniaService
+                    .Wczytaj(request.ZawartoscPliku);
 
             return definicjaZamowieniaDao.Wstaw(definicja);
         }

@@ -2,7 +2,7 @@
 
 namespace Kruchy.Zamowienia.Model.PlikZamowienia
 {
-    class Produkt
+    public class Produkt
     {
         public string Nazwa { get; set; }
 
@@ -46,6 +46,12 @@ namespace Kruchy.Zamowienia.Model.PlikZamowienia
         public virtual Produkt Klonuj()
         {
             return new Produkt(this);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[{3}] {0}, cena: {1}, ilość {2}, ",
+                Nazwa, Cena, Ilosc, NumerPozycjiWExcelu);
         }
     }
 }

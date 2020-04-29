@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Kruchy.Zamowienia.Model.PlikZamowienia
 {
-    class Zamowienie
+    public class Zamowienie
     {
         public IList<GrupaProduktow> GrupyProduktow { get; set; }
         public string Nazwa { get; set; }
