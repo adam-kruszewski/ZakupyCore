@@ -19,8 +19,14 @@ namespace Kruchy.Zamowienia.Services.Impl
             this.walidacjaDefinicji = walidacjaDefinicji;
         }
 
-        public int? Wstaw(IDefinicjaZamowienia definicja)
+        public int? Wstaw(WstawienieDefinicjiZamowieniaRequest request)
         {
+            var definicja = new DefinicjaZamowienia
+            {
+                Nazwa = request.Nazwa,
+                DataKoncaZamawiania = request.DataKoncaZamawiania
+            };
+
             if (WalidacjaHelper.Waliduj(o => walidacjaDefinicji.Waliduj(definicja, o)))
                 return null;
 
@@ -34,6 +40,11 @@ namespace Kruchy.Zamowienia.Services.Impl
             public string Nazwa { get; set; }
 
             public DateTime DataKoncaZamawiania { get; set; }
+
+            public DefinicjaZamowienia()
+            {
+
+            }
 
             public DefinicjaZamowienia(IDefinicjaZamowienia definicja)
             {

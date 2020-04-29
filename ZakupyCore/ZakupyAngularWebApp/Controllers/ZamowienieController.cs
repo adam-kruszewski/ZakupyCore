@@ -40,12 +40,7 @@ namespace ZakupyAngularWebApp.Controllers
         [HttpPut]
         public DodanieZamowieniaResult Put([FromBody] DodawanieZamowowieniaRequest request)
         {
-            var wstawionaID = definicjeService.Wstaw(
-                new Definicja
-                {
-                    Nazwa = request.Nazwa,
-                    DataKoncaZamawiania = request.DataKoncaZamawiania
-                });
+            var wstawionaID = definicjeService.Wstaw(DajRequestWstawienia(request));
 
             if (wstawionaID.HasValue)
                 return new DodanieZamowieniaResult
@@ -58,6 +53,15 @@ namespace ZakupyAngularWebApp.Controllers
                 {
                     Sukces = false
                 };
+        }
+
+        private static WstawienieDefinicjiZamowieniaRequest DajRequestWstawienia(DodawanieZamowowieniaRequest request)
+        {
+            return new WstawienieDefinicjiZamowieniaRequest
+            {
+                Nazwa = request.Nazwa,
+                DataKoncaZamawiania = request.DataKoncaZamawiania
+            };
         }
 
         private class Definicja : IDefinicjaZamowienia
