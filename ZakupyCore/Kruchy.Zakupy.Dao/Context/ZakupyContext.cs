@@ -11,6 +11,8 @@ namespace Kruchy.Zakupy.Dao.Context
 
         public DbSet<GrupaProduktow> GrupyProduktow { get; set; }
 
+        public DbSet<Produkt> Produkty { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

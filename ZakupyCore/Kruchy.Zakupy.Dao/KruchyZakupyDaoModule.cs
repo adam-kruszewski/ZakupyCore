@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using Kruchy.Model.DataTypes.Database;
 using Kruchy.Uzytkownicy.Dao;
 using Kruchy.Zakupy.Dao.Context;
 using Kruchy.Zakupy.Dao.Dao;
+using Kruchy.Zakupy.Dao.Database;
 using Kruchy.Zamowienia.Dao;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +33,10 @@ namespace Kruchy.Zakupy.Dao
 
             services.AddScoped<IUzytkownikDao, UzytkownikDao>();
             services.AddScoped<IDefinicjaZamowieniaDao, DefinicjaZamowieniaDao>();
+            services.AddScoped<IGrupaProduktowDao, GrupaProduktowDao>();
+
             services.AddDbContext<ZakupyContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }
