@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthenticationService, User } from '../authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,13 @@ import { AuthenticationService, User } from '../authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm;
+  loginForm: FormGroup;
+  returnUrl: string;
 
   constructor(
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
     private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
@@ -19,14 +23,18 @@ export class LoginComponent implements OnInit {
       nazwa: ['', Validators.required],
       haslo: ['', [Validators.required]]
     });
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   onSubmit(form) {
     let user: User | null;
     user = this.authenticationService.login(form.nazwa, form.haslo);
 
-    if (user != null)
+    if (user != null) {
       window.alert('Zalogowano:' + user.nazwa);
+      this.router.navigate([this.returnUrl]);
+    }
     else
       window.alert('Błąd logowania');
   }

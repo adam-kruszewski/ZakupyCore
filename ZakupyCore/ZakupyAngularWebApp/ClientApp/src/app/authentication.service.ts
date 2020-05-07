@@ -6,6 +6,7 @@ export class AuthenticationService {
   constructor() { }
 
   public get currentUserValue(): User | null {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
     return this.user;
   }
 

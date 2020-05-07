@@ -24,6 +24,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ValidationInfoComponent } from './validation-info/validation-info.component';
 import { FormLabelComponent } from './form-label/form-label.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { LoginComponent } from './login/login.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'zamowienia', component: ZamowieniaComponent },
-      { path: 'zamowienie-form', component: ZamowienieFormComponent },
+      { path: 'zamowienie-form', component: ZamowienieFormComponent, canActivate: [AuthGuardService] },
       { path: 'zamowienie/:zamowienieID', component: ZamowienieComponent },
       { path: 'zamowienie-produkty/:zamowienieID', component: ZamowienieProduktyComponent }
     ]),
