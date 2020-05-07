@@ -1,0 +1,27 @@
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <div class="form-group">
+      <app-form-label [controlID]="'nazwa'" [text]="'Nazwa lub email'"></app-form-label>
+
+      <div class="col-md-5">
+        <input id="nazwa" type="text" formControlName="nazwa" required>
+
+        <app-validation-info [control]="loginForm.controls.nazwa" [controlLabel]="'Nazwa lub email'">
+        </app-validation-info>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <app-form-label [controlID]="'haslo'" [text]="'Hasło'"></app-form-label>
+
+      <div class="col-md-5">
+        <input id="haslo" type="password" formControlName="haslo" required>
+
+        <app-validation-info [control]="loginForm.controls.haslo" [controlLabel]="'Hasło'">
+        </app-validation-info>
+      </div>
+    </div>
+
+    <button class="button" type="submit" [disabled]="!loginForm.valid">Zaloguj</button>
+  </form>
+</div>

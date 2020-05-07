@@ -23,6 +23,7 @@ import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ValidationInfoComponent } from './validation-info/validation-info.component';
 import { FormLabelComponent } from './form-label/form-label.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FormLabelComponent } from './form-label/form-label.component';
     IloscFormatterComponent,
     FileUploadComponent,
     ValidationInfoComponent,
-    FormLabelComponent
+    FormLabelComponent,
+    LoginComponent
   ],
   imports: [
     MatDatepickerModule, MatNativeDateModule,
@@ -51,6 +53,7 @@ import { FormLabelComponent } from './form-label/form-label.component';
     AgGridModule.withComponents([NumberFormatterComponent, IloscFormatterComponent]),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'zamowienia', component: ZamowieniaComponent },
