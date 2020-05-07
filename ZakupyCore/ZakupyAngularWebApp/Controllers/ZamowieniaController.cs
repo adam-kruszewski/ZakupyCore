@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Kruchy.Zamowienia.Model;
+using Kruchy.Zamowienia.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ZakupyAngularWebApp.Controllers
@@ -7,27 +10,34 @@ namespace ZakupyAngularWebApp.Controllers
     [Route("api/[controller]")]
     public class ZamowieniaController : Controller
     {
+        private readonly IDefinicjeZamowienService definicjeZamowienService;
+
+        public ZamowieniaController(
+            IDefinicjeZamowienService definicjeZamowienService)
+        {
+            this.definicjeZamowienService = definicjeZamowienService;
+        }
+
         [HttpGet]
         public IList<DefinicjaZamowienia> Szukaj()
         {
-            var definicje = new List<DefinicjaZamowienia>();
+            var definicje = definicjeZamowienService.Szukaj();
 
-            var ile = 5 + new Random().Next(0, 10);
-
-            for (int i = 0; i < ile; i++)
-                definicje.Add(new DefinicjaZamowienia
-                {
-                    ID = 10 + i,
-                    Nazwa = "Zamówienie " + i,
-                    DataKonca = DateTime.Today.AddDays(i)
-                });
-
-            return definicje;
+            return definicje.Select(o => new DefinicjaZamowienia(o)).ToList();
         }
     }
 
     public class DefinicjaZamowienia
     {
+        public DefinicjaZamowienia() { }
+
+        public DefinicjaZamowienia(IDefinicjaZamowienia definicja)
+        {
+            ID = definicja.ID;
+            Nazwa = definicja.Nazwa;
+            DataKonca = definicja.DataKoncaZamawiania;
+        }
+
         public int ID { get; set; }
 
         public string Nazwa { get; set; }

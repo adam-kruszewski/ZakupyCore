@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Kruchy.Model.DataTypes.Database;
@@ -109,6 +110,11 @@ namespace Kruchy.Zamowienia.Services.Impl
                 NumerWierszaWExcelu = o.NumerPozycjiWExcelu,
                 Cena = o.CenaDecimal
             };
+        }
+
+        public IEnumerable<IDefinicjaZamowienia> Szukaj()
+        {
+            return definicjaZamowieniaDao.Szukaj();
         }
 
         private class DefinicjaZamowienia : IDefinicjaZamowienia
