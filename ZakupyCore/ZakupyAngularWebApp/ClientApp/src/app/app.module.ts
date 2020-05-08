@@ -25,6 +25,7 @@ import { ValidationInfoComponent } from './validation-info/validation-info.compo
 import { FormLabelComponent } from './form-label/form-label.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { LoginTokenInterceptorService } from './services/login-token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,9 @@ import { AuthGuardService } from './services/auth-guard.service';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoginTokenInterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
