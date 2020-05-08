@@ -54,7 +54,7 @@ import { AuthGuardService } from './services/auth-guard.service';
     AgGridModule.withComponents([NumberFormatterComponent, IloscFormatterComponent]),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
+      { path: 'login/:returnUrl', component: LoginComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'zamowienia', component: ZamowieniaComponent },

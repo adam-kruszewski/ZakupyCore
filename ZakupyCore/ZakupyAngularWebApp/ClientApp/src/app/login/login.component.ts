@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
     if (user != null) {
       window.alert('Zalogowano:' + user.nazwa);
-      this.router.navigate([this.returnUrl]);
+      this.router.navigate([this.returnUrl], { replaceUrl: true });
     }
     else
       window.alert('Błąd logowania');
