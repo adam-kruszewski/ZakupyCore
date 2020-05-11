@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Kruchy.Uzytkownicy.Dao;
 using Kruchy.Zakupy.Dao.Context;
+using OfficeOpenXml.FormulaParsing.ExpressionGraph;
 
 namespace Kruchy.Zakupy.Dao.Dao
 {
@@ -34,6 +36,21 @@ namespace Kruchy.Zakupy.Dao.Dao
                     .Uzytkownicy
                         .SingleOrDefault(o => o.Nazwa.ToLower() == nazwa.ToLower());
 
+            return DajUzytkownika(entity);
+        }
+
+        public IUzytkownik SzukajWgEmaila(string email)
+        {
+            var entity =
+                zakupyContext
+                    .Uzytkownicy
+                        .SingleOrDefault(o => o.Email.ToLower() == email.ToLower());
+            
+            return DajUzytkownika(entity);
+        }
+
+        private static IUzytkownik DajUzytkownika(UzytkownikEntity entity)
+        {
             if (entity != null)
                 return new Uzytkownik(entity);
             else

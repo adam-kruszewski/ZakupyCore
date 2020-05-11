@@ -8,7 +8,7 @@ namespace Kruchy.Uzytkownicy.Services
     {
         UzytkownikView DajWgID(int id);
 
-        UzytkownikView SzukajWgNazwyHasla(string nazwa, string haslo);
+        UzytkownikView SzukajWgNazwyLubEmailaHasla(string nazwa, string haslo);
 
         int? Dodaj(
             DodanieUzytkownikaRequest request,

@@ -26,11 +26,7 @@ namespace Kruchy.Uzytkownicy.Services.Impl
         {
             var uzytkownik = uzytkownikDao.DajWgID(id);
 
-            return new UzytkownikView()
-            {
-                ID = uzytkownik.ID,
-                Nazwa = uzytkownik.Nazwa,
-            };
+            return DajViewUzytkownika(uzytkownik);
         }
 
         public int? Dodaj(DodanieUzytkownikaRequest request, IWalidacjaListener listener)
@@ -48,19 +44,25 @@ namespace Kruchy.Uzytkownicy.Services.Impl
             return uzytkownikDao.Wstaw(entity);
         }
 
-        public UzytkownikView SzukajWgNazwyHasla(string nazwa, string haslo)
+        public UzytkownikView SzukajWgNazwyLubEmailaHasla(string nazwa, string haslo)
         {
-            throw new NotImplementedException();
+            var uzytkownik = uzytkownikDao.SzukajWgNazwy(nazwa);
+            if (uzytkownik == null)
+                uzytkownik = uzytkownikDao.SzukajWgEmaila(nazwa);
+
+            if (uzytkownik != null && uzytkownik.Haslo == haslo)
+                return DajViewUzytkownika(uzytkownik);
+
+            return null;
         }
 
         public IList<UzytkownikView> SzukajWszystkich()
         {
-            return uzytkownikDao.Szukaj().Select(o => new UzytkownikView()
-            {
-                ID = o.ID,
-                Nazwa = o.Nazwa,
-                Email = o.Email
-            }).ToList();
+            return
+                uzytkownikDao
+                    .Szukaj()
+                        .Select(o => DajViewUzytkownika(o))
+                            .ToList();
         }
 
         public bool Zmien(
@@ -90,7 +92,16 @@ namespace Kruchy.Uzytkownicy.Services.Impl
             IWalidacjaListener listener)
         {
             throw new NotImplementedException();
+        }
 
+        private UzytkownikView DajViewUzytkownika(IUzytkownik uzytkownik)
+        {
+            return new UzytkownikView
+            {
+                ID = uzytkownik.ID,
+                Nazwa = uzytkownik.Nazwa,
+                Email = uzytkownik.Email
+            };
         }
 
         private class Uzytkownik : IUzytkownik

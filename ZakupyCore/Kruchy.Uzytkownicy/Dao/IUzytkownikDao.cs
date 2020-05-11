@@ -8,6 +8,8 @@ namespace Kruchy.Uzytkownicy.Dao
 
         IUzytkownik SzukajWgNazwy(string nazwa);
 
+        IUzytkownik SzukajWgEmaila(string email);
+
         IEnumerable<IUzytkownik> Szukaj();
 
         int Wstaw(IUzytkownik uzytkownik);
