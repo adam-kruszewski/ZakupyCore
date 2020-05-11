@@ -1,3 +1,4 @@
+using System;
 using Kruchy.Uzytkownicy;
 using Kruchy.Uzytkownicy.Services;
 using Kruchy.Uzytkownicy.Services.Impl;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ZakupyAngularWebApp.Authentication;
 using ZakupyAngularWebApp.Services;
 using ZakupyAngularWebApp.Services.Impl;
 
@@ -38,11 +40,16 @@ namespace ZakupyAngularWebApp
             new KrucheZamowieniaModule().Init(services);
 
             services.AddTransient<IUploadedFilesService, UploadedFilesService>();
+            services.AddTransient<ITokenGenerationService, TokenGenerationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            string baseDir = env.ContentRootPath;
+            var dataDirectory = System.IO.Path.Combine(baseDir, "App_Data");
+            TokenGenerationService.KeysDirectory = dataDirectory;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

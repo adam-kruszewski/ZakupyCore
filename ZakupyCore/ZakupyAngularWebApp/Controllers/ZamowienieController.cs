@@ -2,11 +2,13 @@
 using Kruchy.Zamowienia.Model;
 using Kruchy.Zamowienia.Services;
 using Microsoft.AspNetCore.Mvc;
+using ZakupyAngularWebApp.Authentication;
 using ZakupyAngularWebApp.Services;
 
 namespace ZakupyAngularWebApp.Controllers
 {
     [Route("api/[controller]")]
+    [WymagaLogowania]
     public class ZamowienieController : Controller
     {
         private readonly IDefinicjeZamowienService definicjeService;

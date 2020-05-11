@@ -7,3 +7,4 @@ ZakupyWebApp/blogging.db-wal
 .vs
 *.db
 *.db-*
+ZakupyAngularWebApp/App_Data
