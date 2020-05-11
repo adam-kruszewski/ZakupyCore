@@ -1,4 +1,6 @@
 using System;
+using Kruchy.Core;
+using Kruchy.Core.Cryptography;
 using Kruchy.Uzytkownicy;
 using Kruchy.Uzytkownicy.Services;
 using Kruchy.Uzytkownicy.Services.Impl;
@@ -38,9 +40,11 @@ namespace ZakupyAngularWebApp
             new KruchyZakupyDaoModule().Init(services);
             new KruchyUzytkownicyModule().Init(services);
             new KrucheZamowieniaModule().Init(services);
+            new KruchyCoreModule().Init(services);
 
             services.AddTransient<IUploadedFilesService, UploadedFilesService>();
             services.AddTransient<ITokenGenerationService, TokenGenerationService>();
+            services.AddTransient<IAesKeyProvider, AesKeysProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +53,7 @@ namespace ZakupyAngularWebApp
             string baseDir = env.ContentRootPath;
             var dataDirectory = System.IO.Path.Combine(baseDir, "App_Data");
             TokenGenerationService.KeysDirectory = dataDirectory;
+            AesKeysProvider.KeysDirectory = dataDirectory;
 
             if (env.IsDevelopment())
             {

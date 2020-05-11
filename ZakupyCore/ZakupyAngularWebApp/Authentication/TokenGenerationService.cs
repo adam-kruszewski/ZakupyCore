@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using Kruchy.Core.Cryptography;
 using Kruchy.Uzytkownicy.Views;
 using Microsoft.AspNetCore.Authentication;
 using Newtonsoft.Json;
@@ -15,6 +16,14 @@ namespace ZakupyAngularWebApp.Authentication
         private static string AesKeyPath => Path.Combine(KeysDirectory, "aes.key");
 
         private static string AesIVPath => Path.Combine(KeysDirectory, "aes.iv");
+
+        private readonly IAesEncrypter aesEncoder;
+
+        public TokenGenerationService(
+            IAesEncrypter aesEncoder)
+        {
+            this.aesEncoder = aesEncoder;
+        }
 
         public string GetToken(UzytkownikView uzytkownik)
         {
@@ -35,7 +44,8 @@ namespace ZakupyAngularWebApp.Authentication
             IV = aesKeys.Item2;
 
             // Encrypt the string to an array of bytes.
-            byte[] encrypted = EncryptStringToBytes_Aes(tokenDataString, key, IV);
+            byte[] encrypted = aesEncoder.Encode(tokenDataString);
+            //EncryptStringToBytes_Aes(tokenDataString, key, IV);
 
             string roundtrip = DecryptStringFromBytes_Aes(encrypted, key, IV);
 
