@@ -4,10 +4,12 @@ using System.Linq;
 using Kruchy.Zamowienia.Model;
 using Kruchy.Zamowienia.Services;
 using Microsoft.AspNetCore.Mvc;
+using ZakupyAngularWebApp.Authentication;
 
 namespace ZakupyAngularWebApp.Controllers
 {
     [Route("api/[controller]")]
+    [WymagaLogowaniaTokenem]
     public class ZamowieniaController : Controller
     {
         private readonly IDefinicjeZamowienService definicjeZamowienService;

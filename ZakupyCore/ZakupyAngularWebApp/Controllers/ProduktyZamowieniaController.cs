@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using ZakupyAngularWebApp.Authentication;
 using ZakupyAngularWebApp.RestApiModels;
 
 namespace ZakupyAngularWebApp.Controllers
 {
     [Route("api/[controller]")]
+    [WymagaLogowaniaTokenem]
     public class ProduktyZamowieniaController : Controller
     {
         [HttpGet]
