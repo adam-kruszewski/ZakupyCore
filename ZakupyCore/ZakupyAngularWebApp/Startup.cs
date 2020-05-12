@@ -52,7 +52,6 @@ namespace ZakupyAngularWebApp
         {
             string baseDir = env.ContentRootPath;
             var dataDirectory = System.IO.Path.Combine(baseDir, "App_Data");
-            TokenGenerationService.KeysDirectory = dataDirectory;
             AesKeysProvider.KeysDirectory = dataDirectory;
 
             if (env.IsDevelopment())

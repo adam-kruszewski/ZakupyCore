@@ -8,7 +8,7 @@ using ZakupyAngularWebApp.Services;
 namespace ZakupyAngularWebApp.Controllers
 {
     [Route("api/[controller]")]
-    [WymagaLogowania]
+    [WymagaLogowaniaTokenem]
     public class ZamowienieController : Controller
     {
         private readonly IDefinicjeZamowienService definicjeService;

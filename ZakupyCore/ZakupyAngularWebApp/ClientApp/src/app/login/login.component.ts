@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthenticationService, User } from '../authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -28,14 +29,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form) {
-    let user: User | null;
+    let user: Observable<User>;
     user = this.authenticationService.login(form.nazwa, form.haslo);
 
-    if (user != null) {
-      window.alert('Zalogowano:' + user.nazwa);
-      this.router.navigate([this.returnUrl], { replaceUrl: true });
-    }
-    else
-      window.alert('Błąd logowania');
+    user.toPromise().then((u: User) => {
+      if (u != null) {
+        window.alert('Zalogowano:' + u.nazwa);
+        this.router.navigate([this.returnUrl], { replaceUrl: true });
+      } else {
+        window.alert('Błąd logowania');
+      }
+    });
   }
 }

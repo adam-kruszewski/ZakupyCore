@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from '../authentication.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoginTokenInterceptorService implements HttpInterceptor {
 
-  constructor() { }
+  constructor(
+    private authenticationService: AuthenticationService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // add authorization header with jwt token if available
-    //let currentUser = this.authenticationService.currentUserValue;
-    //if (currentUser && currentUser.token) {
-      let request1 = request.clone({
-        setHeaders: {
-          AkAuthorizaation: 'ak001'
-          //Authorization: `Bearer ${currentUser.token}`
-        }
-      });
-    request1.headers.append('ak_test', 'ak001');
-    //}
+    let token: string;
+
+    token = this.authenticationService.userToken;
+
+    let request1 = request.clone({
+      setHeaders: {
+        AkAuthorizaation: 'ak001',
+        ak_user_token: token
+        //Authorization: `Bearer ${currentUser.token}`
+      }
+    });
 
     return next.handle(request1);
   }
